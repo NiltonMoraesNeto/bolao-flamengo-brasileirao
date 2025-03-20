@@ -6,19 +6,6 @@ interface TabelaJogosProps {
 }
 
 export function TabelaJogos({ jogos }: TabelaJogosProps) {
-  // const formatDateBR = (dateString: string): string => {
-  //   const date = new Date(dateString);
-  //   const day = date.getDate().toString().padStart(2, '0');
-  //   const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  //   const year = date.getFullYear();
-  //   return `${day}/${month}/${year}`;
-  // };
-
-  // const formatDateBR = (dateString: string): string => {
-  //   const [year, month, day] = dateString.split(' ')[0].split('-');
-  //   return `${day}/${month}/${year}`;
-  // };
-
   const formatDateBR = (dateString: string): string => {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, '0');

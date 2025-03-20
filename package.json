@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "server": "json-server --watch db.json --port 3001",
-    "predeplay": "npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

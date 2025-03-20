@@ -14,6 +14,7 @@ export const listaJogos: Jogo[] = [
     data: '2025-03-29 20:00',
     timeCasa: 'Flamengo',
     timeFora: 'Internacional',
+    resultado: 'V',
   },
   {
     id: 2,
