@@ -16,6 +16,7 @@ Abrir [http://localhost:5173/home](http://localhost:5173/home) para a tela inici
 ```bash
 Projeto contem as seguintes páginas(URL)
 - /home - (Listagem dos jogos do Flamengo no Brasilerão 2025)
-- /palpites - (Form para inserir os palpites de cada jogo e abaixo uma listagem dos palpites de cada jogo e por jogador)
+- /palpites - (Form para inserir os palpites de cada jogo e abaixo uma listagem dos palpites 
+de cada jogo e por jogador)
 - /classificacao - (Classificação do Bolão)
 ```
