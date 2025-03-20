@@ -12,7 +12,8 @@
     "test": "vitest",
     "server": "json-server --watch db.json --port 3001",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "start": "node src/services/json-server.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.14",
