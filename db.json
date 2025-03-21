@@ -364,13 +364,6 @@
       "golsFora": 0
     },
     {
-      "id": "06d1",
-      "usuario": "ANDRÉ",
-      "jogoId": 1,
-      "golsCasa": 0,
-      "golsFora": 0
-    },
-    {
       "id": "6e33",
       "usuario": "ALEX LEITE",
       "jogoId": 1,
@@ -397,6 +390,13 @@
       "jogoId": 1,
       "golsCasa": 2,
       "golsFora": 1
+    },
+    {
+      "id": "6ced",
+      "usuario": "OCTÁVIO",
+      "jogoId": 2,
+      "golsCasa": 2,
+      "golsFora": 2
     }
   ],
   "resultados": []
