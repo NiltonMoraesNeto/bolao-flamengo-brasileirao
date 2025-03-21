@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(),],
-  //base: "/bolao-flamengo-brasileirao/",
+  base: "/bolao-flamengo-brasileirao/",
   test: {
     globals: true,
     environment: "jsdom"
