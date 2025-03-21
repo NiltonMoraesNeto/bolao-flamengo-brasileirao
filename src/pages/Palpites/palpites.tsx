@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Card from '../../components/card';
 import FormularioPalpite from '../../components/form-palpites';
-import { Jogo, listaJogos } from '../../model/jogos';
+import { Jogo } from '../../model/jogos';
 import { fetchPalpites, postPalpite } from '../../services/palpites-services';
 import { fetchJogos } from '../../services/jogos-services';
 import { Usuario } from '../../model/usuarios';
@@ -9,7 +9,7 @@ import { fetchUsuarios } from '../../services/usuarios';
 import { Palpite } from '../../model/classificacao';
 
 export default function Palpites() {
-  const [jogos, setJogos] = useState<Jogo[]>(listaJogos);
+  const [jogos, setJogos] = useState<Jogo[]>();
   const [palpites, setPalpites] = useState<{
     [usuario: string]: { [jogoId: number]: Palpite };
   }>({});

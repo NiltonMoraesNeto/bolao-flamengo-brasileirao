@@ -2,7 +2,7 @@ import { Check, SquareSlash, X } from 'lucide-react';
 import { Jogo } from '../model/jogos';
 
 interface TabelaJogosProps {
-  jogos: Jogo[];
+  jogos: Jogo[] | undefined;
 }
 
 export function TabelaJogos({ jogos }: TabelaJogosProps) {

@@ -1,11 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '../../components/card';
 import { TabelaJogos } from '../../components/tabela-jogos';
-import { Jogo, listaJogos } from '../../model/jogos';
+import { Jogo } from '../../model/jogos';
 import { Check, SquareSlash, X } from 'lucide-react';
+import { fetchJogos } from '../../services/jogos-services';
 
 export default function Home() {
-  const [jogos] = useState<Jogo[]>(listaJogos);
+  const [jogos, setJogos] = useState<Jogo[]>();
+
+  useEffect(() => {
+    const loadJogos = async () => {
+      const responseJogos = await fetchJogos();
+      if (responseJogos) {
+        setJogos(responseJogos);
+      }
+    };
+
+    loadJogos();
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-8">

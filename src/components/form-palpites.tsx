@@ -12,7 +12,7 @@ import { Resultado } from '../model/resultado';
 import { fetchJogosById } from '../services/jogos-services';
 
 interface FormularioPalpiteProps {
-  jogos: Jogo[];
+  jogos: Jogo[] | undefined;
   usuarios: Usuario[] | undefined;
   onPalpite: (usuario: string, jogoId: number, palpite: Palpite) => void;
 }
@@ -22,10 +22,8 @@ const FormularioPalpite: React.FC<FormularioPalpiteProps> = ({
   usuarios,
   onPalpite,
 }) => {
-  const [selectedJogo, setSelectedJogo] = useState(jogos[0]?.id || 0);
-  const [selectedUsuario, setSelectedUsuario] = useState(
-    usuarios?.[0]?.nome || ''
-  );
+  const [selectedJogo, setSelectedJogo] = useState(1);
+  const [selectedUsuario, setSelectedUsuario] = useState('ANDRÉ');
   const [palpite, setPalpite] = useState<Palpite>({ golsCasa: 0, golsFora: 0 });
   const [selectedPalpite, setSelectedPalpite] = useState<PalpitesTabela[]>();
   const [jogoRealizado, setJogoRealizado] = useState(false);
@@ -127,7 +125,7 @@ const FormularioPalpite: React.FC<FormularioPalpiteProps> = ({
               onChange={(e) => setSelectedJogo(Number(e.target.value))}
               className="mt-1 block w-auto max-sm:w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
             >
-              {jogos.map((jogo) => (
+              {jogos?.map((jogo) => (
                 <option key={jogo.id} value={jogo.id}>
                   <span>
                     {jogo.timeCasa} vs {jogo.timeFora}
