@@ -5,7 +5,7 @@ Projeto feito em [React](https://react.dev/) com [Vite](https://vite.dev/), [Typ
 
 ```bash
 npm i
-npm run server
+npm start
 npm run dev
 ```
 
