@@ -12,3 +12,9 @@ export interface Palpite {
   golsCasa: number;
   golsFora: number;
 }
+
+export interface Resultado {
+  id: number;
+  golsCasa: number;
+  golsFora: number;
+}

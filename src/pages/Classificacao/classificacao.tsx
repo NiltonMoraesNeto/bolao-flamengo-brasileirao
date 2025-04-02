@@ -3,17 +3,7 @@ import Card from "../../components/card";
 import { TabelaClassificacao } from "../../components/tabela-classificacao";
 import { fetchResultados } from "../../services/resultados";
 import { fetchPalpites } from "../../services/palpites-services";
-
-interface Palpite {
-  golsCasa: number;
-  golsFora: number;
-}
-
-interface Resultado {
-  id: number;
-  golsCasa: number;
-  golsFora: number;
-}
+import { Palpite, Resultado } from "../../model/classificacao";
 
 export default function Classificacao() {
   const [palpites, setPalpites] = useState<{

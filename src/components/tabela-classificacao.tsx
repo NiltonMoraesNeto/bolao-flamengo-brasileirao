@@ -1,10 +1,4 @@
-import { Palpite } from "../model/classificacao";
-
-interface Resultado {
-  id: number;
-  golsCasa: number;
-  golsFora: number;
-}
+import { Palpite, Resultado } from "../model/classificacao";
 
 interface TabelaClassificacaoProps {
   palpites: { [usuario: string]: { [jogoId: number]: Palpite } };

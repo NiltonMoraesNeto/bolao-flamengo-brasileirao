@@ -1,65 +1,69 @@
-import { Check, SquareSlash, X } from "lucide-react";
-import { Jogo } from "../model/jogos";
-import formatDateBR from "../utils/format-date-br";
+import { X } from "lucide-react";
+import { PalpitesTabela } from "../model/palpites";
 
-interface TabelaJogosProps {
-  jogos: Jogo[] | undefined;
+interface TabelaPalpitesProps {
+  selectedTimeCasa: string;
+  selectedTimeFora: string;
+  selectedPalpite: PalpitesTabela[] | undefined;
+  jogoRealizado: boolean;
+  handleDelete: (palpiteId: string) => Promise<void>;
 }
 
-export function TabelaJogos({ jogos }: TabelaJogosProps) {
+export function TabelaPalpites({
+  selectedTimeCasa,
+  selectedTimeFora,
+  selectedPalpite,
+  jogoRealizado,
+  handleDelete,
+}: TabelaPalpitesProps) {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto mt-4">
       <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-lg">
         <thead>
           <tr>
             <th className="py-3 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-700 bg-gray-50">
-              Rodada
+              Usuário
             </th>
             <th className="py-3 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-700 bg-gray-50">
-              Data
+              {selectedTimeCasa}
             </th>
             <th className="py-3 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-700 bg-gray-50">
-              Time Casa
+              {selectedTimeFora}
             </th>
             <th className="py-3 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-700 bg-gray-50">
-              Time Fora
+              Pts Obtidos
             </th>
             <th className="py-3 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-700 bg-gray-50">
-              Placar
-            </th>
-            <th className="py-3 px-4 border-b border-gray-200 text-left text-sm font-medium text-gray-700 bg-gray-50">
-              Resultado
+              Deletar Palpite
             </th>
           </tr>
         </thead>
         <tbody>
-          {jogos?.map((jogo) => (
+          {selectedPalpite?.map((jogo) => (
             <tr key={jogo.id} className="hover:bg-gray-100">
               <td className="py-2 px-4 border-b border-gray-200 text-left text-sm text-gray-900">
-                {jogo.rodada}
+                {jogo.usuario}
               </td>
               <td className="py-2 px-4 border-b border-gray-200 text-left text-sm text-gray-900">
-                {formatDateBR(jogo.data)}
+                {jogo.golsCasa}
               </td>
               <td className="py-2 px-4 border-b border-gray-200 text-left text-sm text-gray-900">
-                {jogo.timeCasa}
+                {jogo.golsFora}
               </td>
               <td className="py-2 px-4 border-b border-gray-200 text-left text-sm text-gray-900">
-                {jogo.timeFora}
+                {jogoRealizado ? jogo.pontos : "-"}
               </td>
               <td className="py-2 px-4 border-b border-gray-200 text-left text-sm text-gray-900">
-                {jogo.placar}
-              </td>
-              <td className="py-2 px-4 border-b border-gray-200 text-left text-sm text-gray-900">
-                {jogo.resultado === "V" ? (
-                  <Check className="text-green-600" />
-                ) : jogo.resultado === "D" ? (
-                  <X className="text-red-600" />
-                ) : jogo.resultado === "E" ? (
-                  <SquareSlash className="text-yellow-500" />
-                ) : (
-                  "-"
-                )}
+                <button
+                  type="button"
+                  className={`cursor-pointer ${
+                    jogoRealizado ? "text-red-200" : "text-red-600"
+                  } hover:text-red-800 focus:outline-none focus:underline`}
+                  onClick={() => handleDelete(jogo.id)}
+                  disabled={jogoRealizado}
+                >
+                  <X size={24} />
+                </button>
               </td>
             </tr>
           ))}

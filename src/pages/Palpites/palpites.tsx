@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Card from "../../components/card";
-import FormularioPalpite from "../../components/form-palpites";
 import { Jogo } from "../../model/jogos";
 import { fetchPalpites, postPalpite } from "../../services/palpites-services";
 import { fetchJogos } from "../../services/jogos-services";
@@ -8,6 +7,7 @@ import { Usuario } from "../../model/usuarios";
 import { Palpite } from "../../model/classificacao";
 import { fetchUsuarios } from "../../services/usuarios";
 import { toast } from "sonner";
+import HomePalpite from "../../components/home-palpites";
 
 export default function Palpites() {
   const [jogos, setJogos] = useState<Jogo[]>();
@@ -92,7 +92,7 @@ export default function Palpites() {
         Palpites
       </h1>
       <Card title="">
-        <FormularioPalpite
+        <HomePalpite
           jogos={jogos}
           usuarios={usuarios}
           onPalpite={handlePalpite}
