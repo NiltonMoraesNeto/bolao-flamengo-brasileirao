@@ -160,6 +160,48 @@ app.delete('/api/palpitesDelete/:palpiteId', (req, res) => {
   }
 });
 
+app.post('/api/resultados/new', (req, res) => {
+  const { id, golsCasa, golsFora } = req.body;
+  const db = readDB();
+  db.resultados.push({ id: id, golsCasa, golsFora });
+  writeDB(db);
+  res.status(201).send('Resultado inserido com sucesso');
+});
+
+app.put('/api/jogosEdit/:id', (req, res) => {
+  const { id } = req.params;
+  const { golsCasa, golsFora, selectedTimeCasa, selectedTimeFora } = req.body;
+  const db = readDB();
+
+  const jogo = db.jogos.find(jogo => jogo.id === id);
+  if (!jogo) {
+    return res.status(404).send('Jogo não encontrado');
+  }
+
+  jogo.placar = `${golsCasa}x${golsFora}`;
+
+  if (selectedTimeCasa === "Flamengo") {
+    if (golsCasa > golsFora) {
+      jogo.resultado = 'V';
+    } else if (golsCasa < golsFora) {
+      jogo.resultado = 'D';
+    } else {
+      jogo.resultado = 'E';
+    }
+  } else if (selectedTimeFora === "Flamengo") {
+    if (golsFora > golsCasa) {
+      jogo.resultado = 'V';
+    } else if (golsFora < golsCasa) {
+      jogo.resultado = 'D';
+    } else {
+      jogo.resultado = 'E';
+    }
+  }
+
+  writeDB(db);
+  res.send('Jogo atualizado com sucesso');
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

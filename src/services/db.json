@@ -82,7 +82,8 @@
       "data": "2025-04-06 16:00",
       "timeCasa": "Vitória",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "3",
@@ -90,7 +91,8 @@
       "data": "2025-04-12 18:30",
       "timeCasa": "Grêmio",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "4",
@@ -98,7 +100,8 @@
       "data": "2025-04-16 21:00",
       "timeCasa": "Flamengo",
       "timeFora": "Juventude",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "5",
@@ -106,7 +109,8 @@
       "data": "2025-04-19 19:00",
       "timeCasa": "Vasco",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "6",
@@ -114,7 +118,8 @@
       "data": "2025-04-26 17:00",
       "timeCasa": "Flamengo",
       "timeFora": "Corinthians",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "7",
@@ -122,7 +127,8 @@
       "data": "2025-05-03 16:30",
       "timeCasa": "Cruzeiro",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "8",
@@ -130,7 +136,8 @@
       "data": "2025-05-10 20:00",
       "timeCasa": "Flamengo",
       "timeFora": "Bahia",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "9",
@@ -138,7 +145,8 @@
       "data": "2025-05-17 18:00",
       "timeCasa": "Flamengo",
       "timeFora": "Botafogo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "10",
@@ -146,7 +154,8 @@
       "data": "2025-05-24 21:00",
       "timeCasa": "Palmeiras",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "11",
@@ -154,7 +163,8 @@
       "data": "2025-05-30 19:30",
       "timeCasa": "Flamengo",
       "timeFora": "Fortaleza",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "12",
@@ -162,7 +172,8 @@
       "data": "2025-06-11 20:00",
       "timeCasa": "Sport",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "13",
@@ -170,7 +181,8 @@
       "data": "2025-07-12 18:00",
       "timeCasa": "Flamengo",
       "timeFora": "São Paulo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "14",
@@ -178,7 +190,8 @@
       "data": "2025-07-16 21:30",
       "timeCasa": "Santos",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "15",
@@ -186,7 +199,8 @@
       "data": "2025-07-19 17:00",
       "timeCasa": "Flamengo",
       "timeFora": "Fluminense",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "16",
@@ -194,7 +208,8 @@
       "data": "2025-07-23 20:00",
       "timeCasa": "Bragantino",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "17",
@@ -202,7 +217,8 @@
       "data": "2025-07-26 19:00",
       "timeCasa": "Flamengo",
       "timeFora": "Atlético-MG",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "18",
@@ -210,7 +226,8 @@
       "data": "2025-08-02 18:30",
       "timeCasa": "Ceará",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "19",
@@ -218,7 +235,8 @@
       "data": "2025-08-09 21:00",
       "timeCasa": "Flamengo",
       "timeFora": "Mirassol",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "20",
@@ -226,7 +244,8 @@
       "data": "2025-08-16",
       "timeCasa": "Internacional",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "21",
@@ -234,7 +253,8 @@
       "data": "2025-08-23",
       "timeCasa": "Flamengo",
       "timeFora": "Vitória",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "22",
@@ -242,7 +262,8 @@
       "data": "2025-08-30",
       "timeCasa": "Flamengo",
       "timeFora": "Grêmio",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "23",
@@ -250,7 +271,8 @@
       "data": "2025-09-13",
       "timeCasa": "Juventude",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "24",
@@ -258,7 +280,8 @@
       "data": "2025-09-20",
       "timeCasa": "Flamengo",
       "timeFora": "Vasco",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "25",
@@ -266,7 +289,8 @@
       "data": "2025-09-27",
       "timeCasa": "Corinthians",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "26",
@@ -274,7 +298,8 @@
       "data": "2025-10-01",
       "timeCasa": "Flamengo",
       "timeFora": "Cruzeiro",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "27",
@@ -282,7 +307,8 @@
       "data": "2025-10-16",
       "timeCasa": "Bahia",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "28",
@@ -290,7 +316,8 @@
       "data": "2025-10-25",
       "timeCasa": "Botafogo",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "29",
@@ -298,7 +325,8 @@
       "data": "2025-11-05",
       "timeCasa": "Flamengo",
       "timeFora": "Palmeiras",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "30",
@@ -306,7 +334,8 @@
       "data": "2025-11-19",
       "timeCasa": "Fortaleza",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "31",
@@ -314,7 +343,8 @@
       "data": "2025-11-22",
       "timeCasa": "Flamengo",
       "timeFora": "Sport",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "32",
@@ -322,7 +352,8 @@
       "data": "2025-11-29",
       "timeCasa": "São Paulo",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "33",
@@ -330,7 +361,8 @@
       "data": "2025-12-03",
       "timeCasa": "Flamengo",
       "timeFora": "Santos",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "34",
@@ -338,7 +370,8 @@
       "data": "2025-12-06",
       "timeCasa": "Fluminense",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "35",
@@ -346,7 +379,8 @@
       "data": "2025-12-10",
       "timeCasa": "Flamengo",
       "timeFora": "Bragantino",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "36",
@@ -354,7 +388,8 @@
       "data": "2025-12-13",
       "timeCasa": "Atlético-MG",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "37",
@@ -362,7 +397,8 @@
       "data": "2025-12-17",
       "timeCasa": "Flamengo",
       "timeFora": "Ceará",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     },
     {
       "id": "38",
@@ -370,7 +406,8 @@
       "data": "2025-12-21",
       "timeCasa": "Mirassol",
       "timeFora": "Flamengo",
-      "resultado": "-"
+      "resultado": "-",
+      "placar": ""
     }
   ],
   "palpites": [
@@ -457,6 +494,13 @@
       "jogoId": 1,
       "golsCasa": 1,
       "golsFora": 0
+    },
+    {
+      "id": "lhw1qg07c",
+      "usuario": "NILTON",
+      "jogoId": 2,
+      "golsCasa": 0,
+      "golsFora": 2
     }
   ],
   "resultados": [

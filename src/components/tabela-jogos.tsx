@@ -1,5 +1,5 @@
-import { Check, SquareSlash, X } from 'lucide-react';
-import { Jogo } from '../model/jogos';
+import { Check, SquareSlash, X } from "lucide-react";
+import { Jogo } from "../model/jogos";
 
 interface TabelaJogosProps {
   jogos: Jogo[] | undefined;
@@ -8,11 +8,11 @@ interface TabelaJogosProps {
 export function TabelaJogos({ jogos }: TabelaJogosProps) {
   const formatDateBR = (dateString: string): string => {
     const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear();
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
 
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   };
@@ -61,14 +61,14 @@ export function TabelaJogos({ jogos }: TabelaJogosProps) {
                 {jogo.placar}
               </td>
               <td className="py-2 px-4 border-b border-gray-200 text-left text-sm text-gray-900">
-                {jogo.resultado === 'V' ? (
+                {jogo.resultado === "V" ? (
                   <Check className="text-green-600" />
-                ) : jogo.resultado === 'D' ? (
+                ) : jogo.resultado === "D" ? (
                   <X className="text-red-600" />
-                ) : jogo.resultado === 'E' ? (
+                ) : jogo.resultado === "E" ? (
                   <SquareSlash className="text-yellow-500" />
                 ) : (
-                  '-'
+                  "-"
                 )}
               </td>
             </tr>

@@ -7,9 +7,26 @@ import {
 } from "../services/palpites-services";
 import { Jogo, Palpite } from "../model/classificacao";
 import { X } from "lucide-react";
-import { fetchResultadosByID } from "../services/resultados";
+import {
+  atualizarJogo,
+  fetchResultadosByID,
+  inserirResultado,
+} from "../services/resultados";
 import { Resultado } from "../model/resultado";
 import { fetchJogosById } from "../services/jogos-services";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import { Label } from "./ui/label";
+import { toast } from "sonner";
 
 interface FormularioPalpiteProps {
   jogos: Jogo[] | undefined;
@@ -31,6 +48,11 @@ const FormularioPalpite: React.FC<FormularioPalpiteProps> = ({
   const [selectedPalpite, setSelectedPalpite] = useState<PalpitesTabela[]>();
   const [jogoRealizado, setJogoRealizado] = useState(false);
   const [isJogoAgora, setIsJogoAgora] = useState(false);
+  const [resultado, setResultado] = useState<Palpite>({
+    golsCasa: 0,
+    golsFora: 0,
+  });
+  const [openModal, setOpenModal] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -118,7 +140,43 @@ const FormularioPalpite: React.FC<FormularioPalpiteProps> = ({
     const interval = setInterval(verificarJogoAgora, 60000);
 
     return () => clearInterval(interval);
-  }, [selectedJogo, jogos]);
+  }, [selectedJogo, jogos, openModal]);
+
+  const handleSaveResult = async () => {
+    const resultadoPost = {
+      id: selectedJogo.toString(),
+      golsCasa: resultado.golsCasa,
+      golsFora: resultado.golsFora,
+    };
+
+    const dadosJogoPut = {
+      golsCasa: resultado.golsCasa,
+      golsFora: resultado.golsFora,
+      selectedTimeCasa: selectedTimeCasa,
+      selectedTimeFora: selectedTimeFora,
+    };
+
+    const responseResultado = await inserirResultado(resultadoPost);
+
+    const responseJogo = await atualizarJogo(
+      selectedJogo.toString(),
+      dadosJogoPut
+    );
+
+    if (
+      responseResultado === "Resultado inserido com sucesso" &&
+      responseJogo === "Jogo atualizado com sucesso"
+    ) {
+      setOpenModal(false);
+      setResultado({
+        golsCasa: 0,
+        golsFora: 0,
+      });
+      toast.success("Sucesso", {
+        description: `Resultado adicionado com sucesso`,
+      });
+    }
+  };
 
   return (
     <>
@@ -162,7 +220,7 @@ const FormularioPalpite: React.FC<FormularioPalpiteProps> = ({
             <label className="block text-sm font-medium text-gray-700">
               Gols do Time Casa:
             </label>
-            <input
+            <Input
               type="number"
               min={0}
               value={palpite.golsCasa}
@@ -176,7 +234,7 @@ const FormularioPalpite: React.FC<FormularioPalpiteProps> = ({
             <label className="block text-sm font-medium text-gray-700">
               Gols do Time Fora:
             </label>
-            <input
+            <Input
               type="number"
               min={0}
               value={palpite.golsFora}
@@ -188,7 +246,7 @@ const FormularioPalpite: React.FC<FormularioPalpiteProps> = ({
           </div>
         </div>
 
-        <button
+        <Button
           type="submit"
           className={`cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-red-500 hover:bg-gray-600 ${
             isJogoAgora ? "bg-gray-600" : "bg-black"
@@ -196,7 +254,66 @@ const FormularioPalpite: React.FC<FormularioPalpiteProps> = ({
           disabled={isJogoAgora}
         >
           Enviar Palpite
-        </button>
+        </Button>
+        {!jogoRealizado && (
+          <Dialog open={openModal} onOpenChange={setOpenModal}>
+            <DialogTrigger asChild>
+              <Button variant="destructive" className="ml-5" type="button">
+                Inserir Resultado
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Inserir Resultado Final</DialogTitle>
+                <DialogDescription></DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="name" className="text-right">
+                    {selectedTimeCasa}
+                  </Label>
+                  <Input
+                    type="number"
+                    min={0}
+                    value={resultado.golsCasa}
+                    onChange={(e) =>
+                      setResultado({
+                        ...resultado,
+                        golsCasa: Number(e.target.value),
+                      })
+                    }
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="name" className="text-right">
+                    {selectedTimeFora}
+                  </Label>
+                  <Input
+                    type="number"
+                    min={0}
+                    value={resultado.golsFora}
+                    onChange={(e) =>
+                      setResultado({
+                        ...resultado,
+                        golsFora: Number(e.target.value),
+                      })
+                    }
+                  />
+                </div>
+              </div>
+              <DialogFooter>
+                <Button
+                  type="button"
+                  variant="destructive"
+                  onClick={handleSaveResult}
+                >
+                  Enviar Resultado
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        )}
+
         {jogoRealizado && (
           <span className="m-3">
             Placar Final - {selectedTimeCasa}&nbsp;
