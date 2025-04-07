@@ -34,7 +34,7 @@ app.post('/api/usuarios/login', (req, res) => {
     usuario => usuario.email === email && usuario.password === password
   );
   if (user) {
-    const token = jwt.sign({ id: user.id, email: user.email, perfil: user.perfil, cep: user.cep, nome: user.nome, avatar: user.avatar }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user.id, email: user.email, perfil: user.perfil, cep: user.cep, nome: user.nome, avatar: user.avatar }, secretKey, { expiresIn: '24h' });
     res.json({ token, user });
   } else {
     res.status(401).send('Email ou senha inválidos');

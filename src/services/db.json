@@ -79,11 +79,11 @@
     {
       "id": "2",
       "rodada": 2,
-      "data": "2025-04-06 16:00",
+      "data": "2025-04-06 18:30",
       "timeCasa": "Vitória",
       "timeFora": "Flamengo",
-      "resultado": "-",
-      "placar": ""
+      "resultado": "V",
+      "placar": "1x2"
     },
     {
       "id": "3",
@@ -501,6 +501,83 @@
       "jogoId": 2,
       "golsCasa": 0,
       "golsFora": 2
+    },
+    {
+      "id": "afujjg15y",
+      "usuario": "ALEX LEITE",
+      "jogoId": 2,
+      "golsCasa": 0,
+      "golsFora": 3
+    },
+    {
+      "id": "wyg81oyaq",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 2,
+      "golsCasa": 1,
+      "golsFora": 3
+    },
+    {
+      "id": "8u8qpica0",
+      "usuario": "RODRIGO",
+      "jogoId": 2,
+      "golsCasa": 0,
+      "golsFora": 1
+    },
+    {
+      "id": "mdj1x9lcv",
+      "usuario": "GUILHERME",
+      "jogoId": 2,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "tswekstxm",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 2,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "ga4hdmwy2",
+      "usuario": "ANDRÉ",
+      "jogoId": 2,
+      "golsCasa": 0,
+      "golsFora": 3
+    },
+    {
+      "id": "mbg98mxau",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 2,
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "svq1kdxjx",
+      "usuario": "GABRIEL",
+      "jogoId": 2,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "oz6yybxz5",
+      "usuario": "RAFAEL",
+      "jogoId": 2,
+      "golsCasa": 1,
+      "golsFora": 3
+    },
+    {
+      "id": "ysr0ouajl",
+      "usuario": "OCTÁVIO",
+      "jogoId": 2,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "uf5my1cx6",
+      "usuario": "RENATO",
+      "jogoId": 2,
+      "golsCasa": 1,
+      "golsFora": 2
     }
   ],
   "resultados": [
@@ -508,6 +585,11 @@
       "id": "1",
       "golsCasa": 1,
       "golsFora": 1
+    },
+    {
+      "id": "2",
+      "golsCasa": 1,
+      "golsFora": 2
     }
   ]
 }
