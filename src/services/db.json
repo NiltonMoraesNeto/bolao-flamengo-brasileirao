@@ -109,17 +109,17 @@
       "data": "2025-04-19 18:30",
       "timeCasa": "Vasco",
       "timeFora": "Flamengo",
-      "resultado": "-",
-      "placar": ""
+      "resultado": "E",
+      "placar": "0x0"
     },
     {
       "id": "6",
       "rodada": 6,
-      "data": "2025-04-26 16:00",
+      "data": "2025-04-27 16:00",
       "timeCasa": "Flamengo",
       "timeFora": "Corinthians",
-      "resultado": "-",
-      "placar": ""
+      "resultado": "V",
+      "placar": "4x0"
     },
     {
       "id": "7",
@@ -746,6 +746,174 @@
       "jogoId": 4,
       "golsCasa": 2,
       "golsFora": 0
+    },
+    {
+      "id": "9m68nob65",
+      "usuario": "ANDRÉ",
+      "jogoId": 5,
+      "golsCasa": 0,
+      "golsFora": 3
+    },
+    {
+      "id": "5p8r00p2n",
+      "usuario": "ALEX LEITE",
+      "jogoId": 5,
+      "golsCasa": 0,
+      "golsFora": 3
+    },
+    {
+      "id": "87aaw96km",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 5,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "uuqzkl7ks",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 5,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "ydzc0cijv",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 5,
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "kg07l7z4o",
+      "usuario": "GABRIEL",
+      "jogoId": 5,
+      "golsCasa": 0,
+      "golsFora": 3
+    },
+    {
+      "id": "ep6d4fpu2",
+      "usuario": "GUILHERME",
+      "jogoId": 5,
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "d17a6be4c",
+      "usuario": "NILTON",
+      "jogoId": 5,
+      "golsCasa": 1,
+      "golsFora": 3
+    },
+    {
+      "id": "gfiq3by1o",
+      "usuario": "OCTÁVIO",
+      "jogoId": 5,
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "w05tb18cx",
+      "usuario": "RAFAEL",
+      "jogoId": 5,
+      "golsCasa": 1,
+      "golsFora": 3
+    },
+    {
+      "id": "z64wfklvb",
+      "usuario": "RENATO",
+      "jogoId": 5,
+      "golsCasa": 1,
+      "golsFora": 3
+    },
+    {
+      "id": "v0vgbiofx",
+      "usuario": "RODRIGO",
+      "jogoId": 5,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "uqdi7vi9i",
+      "usuario": "ANDRÉ",
+      "jogoId": 6,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "q83oa8vi9",
+      "usuario": "ALEX LEITE",
+      "jogoId": 6,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "291fjo42x",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 6,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "16fjr0qzc",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 6,
+      "golsCasa": 4,
+      "golsFora": 1
+    },
+    {
+      "id": "xh1hmvwhh",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 6,
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "hvmax023y",
+      "usuario": "GABRIEL",
+      "jogoId": 6,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "jlxe3f0rz",
+      "usuario": "GUILHERME",
+      "jogoId": 6,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "r2ku0dsem",
+      "usuario": "NILTON",
+      "jogoId": 6,
+      "golsCasa": 3,
+      "golsFora": 1
+    },
+    {
+      "id": "y8qggu7gm",
+      "usuario": "OCTÁVIO",
+      "jogoId": 6,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "5ortjkkdv",
+      "usuario": "RENATO",
+      "jogoId": 6,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "zxff9pgz4",
+      "usuario": "RODRIGO",
+      "jogoId": 6,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "kvae8dodl",
+      "usuario": "RAFAEL",
+      "jogoId": 6,
+      "golsCasa": 2,
+      "golsFora": 1
     }
   ],
   "resultados": [
@@ -767,6 +935,16 @@
     {
       "id": "4",
       "golsCasa": 6,
+      "golsFora": 0
+    },
+    {
+      "id": "5",
+      "golsCasa": 0,
+      "golsFora": 0
+    },
+    {
+      "id": "6",
+      "golsCasa": 4,
       "golsFora": 0
     }
   ]
