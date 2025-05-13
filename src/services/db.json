@@ -127,22 +127,22 @@
       "data": "2025-05-04 18:30",
       "timeCasa": "Cruzeiro",
       "timeFora": "Flamengo",
-      "resultado": "-",
-      "placar": ""
+      "resultado": "D",
+      "placar": "2x1"
     },
     {
       "id": "8",
       "rodada": 8,
-      "data": "2025-05-10 20:00",
+      "data": "2025-05-10 21:00",
       "timeCasa": "Flamengo",
       "timeFora": "Bahia",
-      "resultado": "-",
-      "placar": ""
+      "resultado": "V",
+      "placar": "1x0"
     },
     {
       "id": "9",
       "rodada": 9,
-      "data": "2025-05-17 18:00",
+      "data": "2025-05-18 18:30",
       "timeCasa": "Flamengo",
       "timeFora": "Botafogo",
       "resultado": "-",
@@ -151,7 +151,7 @@
     {
       "id": "10",
       "rodada": 10,
-      "data": "2025-05-24 21:00",
+      "data": "2025-05-25 16:00",
       "timeCasa": "Palmeiras",
       "timeFora": "Flamengo",
       "resultado": "-",
@@ -160,7 +160,7 @@
     {
       "id": "11",
       "rodada": 11,
-      "data": "2025-05-30 19:30",
+      "data": "2025-06-01 18:30",
       "timeCasa": "Flamengo",
       "timeFora": "Fortaleza",
       "resultado": "-",
@@ -914,6 +914,174 @@
       "jogoId": 6,
       "golsCasa": 2,
       "golsFora": 1
+    },
+    {
+      "id": "mx74p1g4i",
+      "usuario": "ANDRÉ",
+      "jogoId": 7,
+      "golsCasa": 0,
+      "golsFora": 1
+    },
+    {
+      "id": "oai418w0e",
+      "usuario": "ALEX LEITE",
+      "jogoId": 7,
+      "golsCasa": 0,
+      "golsFora": 3
+    },
+    {
+      "id": "7v10ydgep",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 7,
+      "golsCasa": 0,
+      "golsFora": 1
+    },
+    {
+      "id": "nbi46a7hq",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 7,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "z9zcg7sl0",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 7,
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "xr5051c4s",
+      "usuario": "GABRIEL",
+      "jogoId": 7,
+      "golsCasa": 0,
+      "golsFora": 3
+    },
+    {
+      "id": "26ey859d5",
+      "usuario": "GUILHERME",
+      "jogoId": 7,
+      "golsCasa": 1,
+      "golsFora": 3
+    },
+    {
+      "id": "gmye7tnv9",
+      "usuario": "NILTON",
+      "jogoId": 7,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "6pmp9kmv3",
+      "usuario": "OCTÁVIO",
+      "jogoId": 7,
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "bl1xmmawd",
+      "usuario": "RAFAEL",
+      "jogoId": 7,
+      "golsCasa": 1,
+      "golsFora": 3
+    },
+    {
+      "id": "jhizfokqv",
+      "usuario": "RENATO",
+      "jogoId": 7,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "410rqgxkt",
+      "usuario": "RODRIGO",
+      "jogoId": 7,
+      "golsCasa": 0,
+      "golsFora": 1
+    },
+    {
+      "id": "oim24vxj5",
+      "usuario": "ANDRÉ",
+      "jogoId": 8,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "rlcwikyco",
+      "usuario": "ALEX LEITE",
+      "jogoId": 8,
+      "golsCasa": 4,
+      "golsFora": 0
+    },
+    {
+      "id": "0pqkt4hqy",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 8,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "i550hv01f",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 8,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "gfd5urzq5",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 8,
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "lnz500n5c",
+      "usuario": "GABRIEL",
+      "jogoId": 8,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "fqrz6b1ei",
+      "usuario": "GUILHERME",
+      "jogoId": 8,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "zudbdn314",
+      "usuario": "NILTON",
+      "jogoId": 8,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "fczci86nv",
+      "usuario": "OCTÁVIO",
+      "jogoId": 8,
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "40qdo6v1e",
+      "usuario": "RAFAEL",
+      "jogoId": 8,
+      "golsCasa": 3,
+      "golsFora": 1
+    },
+    {
+      "id": "gfcv7hqie",
+      "usuario": "RENATO",
+      "jogoId": 8,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "mdy5o6crb",
+      "usuario": "RODRIGO",
+      "jogoId": 8,
+      "golsCasa": 4,
+      "golsFora": 0
     }
   ],
   "resultados": [
@@ -945,6 +1113,16 @@
     {
       "id": "6",
       "golsCasa": 4,
+      "golsFora": 0
+    },
+    {
+      "id": "7",
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "8",
+      "golsCasa": 1,
       "golsFora": 0
     }
   ]
