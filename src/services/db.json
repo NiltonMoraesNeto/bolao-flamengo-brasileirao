@@ -145,8 +145,8 @@
       "data": "2025-05-18 18:30",
       "timeCasa": "Flamengo",
       "timeFora": "Botafogo",
-      "resultado": "-",
-      "placar": ""
+      "resultado": "E",
+      "placar": "0x0"
     },
     {
       "id": "10",
@@ -1082,6 +1082,90 @@
       "jogoId": 8,
       "golsCasa": 4,
       "golsFora": 0
+    },
+    {
+      "id": "7g0gfvl6v",
+      "usuario": "ANDRÉ",
+      "jogoId": 9,
+      "golsCasa": 3,
+      "golsFora": 1
+    },
+    {
+      "id": "6cq19tjgo",
+      "usuario": "ALEX LEITE",
+      "jogoId": 9,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "660zzeg16",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 9,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "9pr4p4eii",
+      "usuario": "GABRIEL",
+      "jogoId": 9,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "4o2cxfjhv",
+      "usuario": "GUILHERME",
+      "jogoId": 9,
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "c94083a5f",
+      "usuario": "NILTON",
+      "jogoId": 9,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "lxbprjuvx",
+      "usuario": "RENATO",
+      "jogoId": 9,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "jqmw092od",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 9,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "afxs6yhij",
+      "usuario": "RODRIGO",
+      "jogoId": 9,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "kncon8j99",
+      "usuario": "OCTÁVIO",
+      "jogoId": 9,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "raal9ngr8",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 9,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "r0q0515sx",
+      "usuario": "RAFAEL",
+      "jogoId": 9,
+      "golsCasa": 1,
+      "golsFora": 0
     }
   ],
   "resultados": [
@@ -1123,6 +1207,11 @@
     {
       "id": "8",
       "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "9",
+      "golsCasa": 0,
       "golsFora": 0
     }
   ]
