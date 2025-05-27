@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import Card from '../../components/card';
-import { TabelaJogos } from '../../components/tabela-jogos';
-import { Jogo } from '../../model/jogos';
-import { Check, SquareSlash, X } from 'lucide-react';
-import { fetchJogos } from '../../services/jogos-services';
+import { useEffect, useState } from "react";
+import Card from "../../components/card";
+import { TabelaJogos } from "../../components/tabela-jogos";
+import { Jogo } from "../../model/jogos";
+import { Check, SquareSlash, X } from "lucide-react";
+import { fetchJogos } from "../../services/jogos-services";
 
 export default function Home() {
   const [jogos, setJogos] = useState<Jogo[]>();
