@@ -163,8 +163,8 @@
       "data": "2025-06-01 18:30",
       "timeCasa": "Flamengo",
       "timeFora": "Fortaleza",
-      "resultado": "-",
-      "placar": ""
+      "resultado": "V",
+      "placar": "5x0"
     },
     {
       "id": "12",
@@ -178,47 +178,47 @@
     {
       "id": "13",
       "rodada": 13,
-      "data": "2025-07-12 18:00",
+      "data": "2025-07-12 16:30",
       "timeCasa": "Flamengo",
       "timeFora": "São Paulo",
-      "resultado": "-",
-      "placar": ""
+      "resultado": "V",
+      "placar": "2x0"
     },
     {
       "id": "14",
       "rodada": 14,
-      "data": "2025-07-16 21:30",
+      "data": "2025-07-16 20:00",
       "timeCasa": "Santos",
       "timeFora": "Flamengo",
-      "resultado": "-",
-      "placar": ""
+      "resultado": "D",
+      "placar": "1x0"
     },
     {
       "id": "15",
       "rodada": 15,
-      "data": "2025-07-19 17:00",
+      "data": "2025-07-20 19:30",
       "timeCasa": "Flamengo",
       "timeFora": "Fluminense",
-      "resultado": "-",
-      "placar": ""
+      "resultado": "V",
+      "placar": "1x0"
     },
     {
       "id": "16",
       "rodada": 16,
-      "data": "2025-07-23 20:00",
+      "data": "2025-07-23 21:30",
       "timeCasa": "Bragantino",
       "timeFora": "Flamengo",
-      "resultado": "-",
-      "placar": ""
+      "resultado": "V",
+      "placar": "1x2"
     },
     {
       "id": "17",
       "rodada": 17,
-      "data": "2025-07-26 19:00",
+      "data": "2025-07-27 20:30",
       "timeCasa": "Flamengo",
       "timeFora": "Atlético-MG",
-      "resultado": "-",
-      "placar": ""
+      "resultado": "V",
+      "placar": "1x0"
     },
     {
       "id": "18",
@@ -1250,6 +1250,510 @@
       "jogoId": 10,
       "golsCasa": 0,
       "golsFora": 2
+    },
+    {
+      "id": "fzo3450as",
+      "usuario": "ANDRÉ",
+      "jogoId": 11,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "nmw76nqpa",
+      "usuario": "ALEX LEITE",
+      "jogoId": 11,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "3ktafvqug",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 11,
+      "golsCasa": 3,
+      "golsFora": 1
+    },
+    {
+      "id": "hfj3u5r3c",
+      "usuario": "GABRIEL",
+      "jogoId": 11,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "lo1zf82mt",
+      "usuario": "GUILHERME",
+      "jogoId": 11,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "0h7m4vo7p",
+      "usuario": "NILTON",
+      "jogoId": 11,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "03rb0i845",
+      "usuario": "OCTÁVIO",
+      "jogoId": 11,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "al41c7imf",
+      "usuario": "RENATO",
+      "jogoId": 11,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "p5omnptzb",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 11,
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "jl6b9ixky",
+      "usuario": "RAFAEL",
+      "jogoId": 11,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "3lf0zxu5m",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 11,
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "7nyowudj0",
+      "usuario": "RODRIGO",
+      "jogoId": 11,
+      "golsCasa": 4,
+      "golsFora": 1
+    },
+    {
+      "id": "njoohqnb0",
+      "usuario": "ANDRÉ",
+      "jogoId": 13,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "63bdhqxnt",
+      "usuario": "ALEX LEITE",
+      "jogoId": 13,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "m97h5ug7k",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 13,
+      "golsCasa": 4,
+      "golsFora": 1
+    },
+    {
+      "id": "1qfn08y1q",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 13,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "ag9jd6hav",
+      "usuario": "GABRIEL",
+      "jogoId": 13,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "ij7kmusfe",
+      "usuario": "GUILHERME",
+      "jogoId": 13,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "9iq3a0v6a",
+      "usuario": "NILTON",
+      "jogoId": 13,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "uzfdo91qv",
+      "usuario": "OCTÁVIO",
+      "jogoId": 13,
+      "golsCasa": 3,
+      "golsFora": 1
+    },
+    {
+      "id": "akolf6j99",
+      "usuario": "RENATO",
+      "jogoId": 13,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "zben4w55b",
+      "usuario": "RAFAEL",
+      "jogoId": 13,
+      "golsCasa": 3,
+      "golsFora": 1
+    },
+    {
+      "id": "p1y80b4zl",
+      "usuario": "RODRIGO",
+      "jogoId": 13,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "g8rk0i5db",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 13,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "tjph975mk",
+      "usuario": "ANDRÉ",
+      "jogoId": 14,
+      "golsCasa": 0,
+      "golsFora": 3
+    },
+    {
+      "id": "fgkwadep0",
+      "usuario": "ALEX LEITE",
+      "jogoId": 14,
+      "golsCasa": 1,
+      "golsFora": 3
+    },
+    {
+      "id": "xwrkw1j5c",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 14,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "22jshhpja",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 14,
+      "golsCasa": 0,
+      "golsFora": 3
+    },
+    {
+      "id": "9iwc65s9a",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 14,
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "6t79psr32",
+      "usuario": "GABRIEL",
+      "jogoId": 14,
+      "golsCasa": 0,
+      "golsFora": 3
+    },
+    {
+      "id": "sz1al0bu1",
+      "usuario": "NILTON",
+      "jogoId": 14,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "6yfjmi2nl",
+      "usuario": "OCTÁVIO",
+      "jogoId": 14,
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "f76pr48d5",
+      "usuario": "RAFAEL",
+      "jogoId": 14,
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "otnknzsrt",
+      "usuario": "RENATO",
+      "jogoId": 14,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "kjw7sbsgz",
+      "usuario": "RODRIGO",
+      "jogoId": 14,
+      "golsCasa": 0,
+      "golsFora": 1
+    },
+    {
+      "id": "hmv8vnn5u",
+      "usuario": "GUILHERME",
+      "jogoId": 14,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "ewlkxwk48",
+      "usuario": "ANDRÉ",
+      "jogoId": 15,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "1xsaeb1nk",
+      "usuario": "ALEX LEITE",
+      "jogoId": 15,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "lw9o8fqc4",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 15,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "hivacc7uz",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 15,
+      "golsCasa": 4,
+      "golsFora": 0
+    },
+    {
+      "id": "2wvsi17tw",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 15,
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "34y0e5pfd",
+      "usuario": "GABRIEL",
+      "jogoId": 15,
+      "golsCasa": 3,
+      "golsFora": 1
+    },
+    {
+      "id": "70zx9588b",
+      "usuario": "GUILHERME",
+      "jogoId": 15,
+      "golsCasa": 3,
+      "golsFora": 1
+    },
+    {
+      "id": "g5uqdmude",
+      "usuario": "NILTON",
+      "jogoId": 15,
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "m8rzowyuu",
+      "usuario": "OCTÁVIO",
+      "jogoId": 15,
+      "golsCasa": 1,
+      "golsFora": 1
+    },
+    {
+      "id": "86sxovj3d",
+      "usuario": "RAFAEL",
+      "jogoId": 15,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "d46k73ap9",
+      "usuario": "RENATO",
+      "jogoId": 15,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "r1f3lspti",
+      "usuario": "RODRIGO",
+      "jogoId": 15,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "gc4ds5to6",
+      "usuario": "ANDRÉ",
+      "jogoId": 16,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "sweh0f9fr",
+      "usuario": "ALEX LEITE",
+      "jogoId": 16,
+      "golsCasa": 0,
+      "golsFora": 3
+    },
+    {
+      "id": "hijsuhl8v",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 16,
+      "golsCasa": 0,
+      "golsFora": 1
+    },
+    {
+      "id": "bu2i6dff2",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 16,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "jcyowb0r0",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 16,
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "q4jjanz6n",
+      "usuario": "GABRIEL",
+      "jogoId": 16,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "xrjrr42ik",
+      "usuario": "GUILHERME",
+      "jogoId": 16,
+      "golsCasa": 0,
+      "golsFora": 1
+    },
+    {
+      "id": "4t3wbkqx3",
+      "usuario": "NILTON",
+      "jogoId": 16,
+      "golsCasa": 0,
+      "golsFora": 1
+    },
+    {
+      "id": "ii0r7efm2",
+      "usuario": "OCTÁVIO",
+      "jogoId": 16,
+      "golsCasa": 1,
+      "golsFora": 1
+    },
+    {
+      "id": "ufqdyj3zh",
+      "usuario": "RAFAEL",
+      "jogoId": 16,
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "bfrkhxk45",
+      "usuario": "RENATO",
+      "jogoId": 16,
+      "golsCasa": 0,
+      "golsFora": 2
+    },
+    {
+      "id": "ckqjcajql",
+      "usuario": "RODRIGO",
+      "jogoId": 16,
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "zocowiorm",
+      "usuario": "ANDRÉ",
+      "jogoId": 17,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "n1bhrymqf",
+      "usuario": "ALEX LEITE",
+      "jogoId": 17,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "6ta57yw87",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 17,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "n1ei76s8o",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 17,
+      "golsCasa": 3,
+      "golsFora": 1
+    },
+    {
+      "id": "j3rzykidj",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 17,
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "r5l1cayxa",
+      "usuario": "GABRIEL",
+      "jogoId": 17,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "13sderr3a",
+      "usuario": "GUILHERME",
+      "jogoId": 17,
+      "golsCasa": 4,
+      "golsFora": 0
+    },
+    {
+      "id": "avokn4uj8",
+      "usuario": "NILTON",
+      "jogoId": 17,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "d9ixmnu4n",
+      "usuario": "OCTÁVIO",
+      "jogoId": 17,
+      "golsCasa": 3,
+      "golsFora": 1
+    },
+    {
+      "id": "kfosa12ms",
+      "usuario": "RAFAEL",
+      "jogoId": 17,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "icabtjhpr",
+      "usuario": "RENATO",
+      "jogoId": 17,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "vgh4qclre",
+      "usuario": "RODRIGO",
+      "jogoId": 17,
+      "golsCasa": 3,
+      "golsFora": 0
     }
   ],
   "resultados": [
@@ -1302,6 +1806,36 @@
       "id": "10",
       "golsCasa": 0,
       "golsFora": 2
+    },
+    {
+      "id": "11",
+      "golsCasa": 5,
+      "golsFora": 0
+    },
+    {
+      "id": "13",
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "14",
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "15",
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "16",
+      "golsCasa": 1,
+      "golsFora": 2
+    },
+    {
+      "id": "17",
+      "golsCasa": 1,
+      "golsFora": 0
     }
   ]
 }
