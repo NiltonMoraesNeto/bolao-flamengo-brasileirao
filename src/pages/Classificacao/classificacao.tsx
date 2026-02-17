@@ -3,13 +3,15 @@ import Card from "../../components/card";
 import { TabelaClassificacao } from "../../components/tabela-classificacao";
 import { fetchResultados } from "../../services/resultados";
 import { fetchPalpites } from "../../services/palpites-services";
-import { Palpite, Resultado } from "../../model/classificacao";
+import { Palpite, Resultado, Jogo } from "../../model/classificacao";
+import { fetchJogos } from "../../services/jogos-services";
 
 export default function Classificacao() {
   const [palpites, setPalpites] = useState<{
     [usuario: string]: { [jogoId: number]: Palpite };
   }>({});
   const [resultados, setResultados] = useState<Resultado[]>([]);
+  const [jogos, setJogos] = useState<Jogo[]>([]);
   const [usuarios] = useState<string[]>([
     "ANDRÉ",
     "ALEX LEITE",
@@ -37,7 +39,7 @@ export default function Classificacao() {
               jogoId: number;
               golsCasa: number;
               golsFora: number;
-            }
+            },
           ) => {
             if (!acc[palpite.usuario]) {
               acc[palpite.usuario] = {};
@@ -45,7 +47,7 @@ export default function Classificacao() {
             acc[palpite.usuario][palpite.jogoId] = palpite;
             return acc;
           },
-          {}
+          {},
         );
         setPalpites(palpitesData);
       }
@@ -58,15 +60,23 @@ export default function Classificacao() {
       }
     };
 
+    const loadJogos = async () => {
+      const responseJogos = await fetchJogos();
+      if (responseJogos) {
+        setJogos(responseJogos);
+      }
+    };
+
     loadPalpites();
     loadResultados();
+    loadJogos();
   }, []);
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-center">
         <h1 className="text-3xl font-bold text-black text-center mr-10">
-          Classificação do Bolão 2025{" "}
+          Classificação do Bolão 2026{" "}
         </h1>
         <img src="/flamengo_logo.png" width={50} className="-mt-3" />
       </div>
@@ -75,6 +85,7 @@ export default function Classificacao() {
           palpites={palpites}
           resultados={resultados}
           usuarios={usuarios}
+          jogos={jogos}
         />
       </Card>
     </div>

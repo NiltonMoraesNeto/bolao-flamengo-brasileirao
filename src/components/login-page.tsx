@@ -34,7 +34,7 @@ export function LoginPage() {
       <div className="hidden w-1/2 flex-col justify-between bg-black p-12 text-red-500 md:flex h-full">
         <div>
           <div className="flex items-center gap-2 text-xl font-semibold">
-            Bolão do Flamengo - Brasileirão 2025
+            Bolão do Flamengo - Brasileirão 2026
           </div>
         </div>
         <div className="space-y-6">

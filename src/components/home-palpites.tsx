@@ -50,36 +50,83 @@ const HomePalpite: React.FC<HomeProps> = ({ jogos, usuarios, onPalpite }) => {
     const response = await deletePalpite(palpiteId);
     if (response) {
       setSelectedPalpite((prevPalpites) =>
-        prevPalpites?.filter((palpite) => palpite.id !== palpiteId)
+        prevPalpites?.filter((palpite) => palpite.id !== palpiteId),
       );
     }
   };
 
-  const calcularPontuacao = (resultado: Resultado, palpite: Palpite) => {
+  const calcularPontuacao = (
+    resultado: Resultado,
+    palpite: Palpite,
+    timeCasa: string,
+    timeFora: string,
+  ) => {
     let pontos = 0;
+
+    // Placar exato
     if (
       palpite.golsCasa === resultado?.golsCasa &&
       palpite.golsFora === resultado?.golsFora
     ) {
-      pontos = 25;
-    } else if (
-      (palpite.golsCasa > palpite.golsFora &&
-        resultado?.golsCasa > resultado?.golsFora) ||
-      (palpite.golsCasa < palpite.golsFora &&
-        resultado?.golsCasa < resultado?.golsFora) ||
-      (palpite.golsCasa === palpite.golsFora &&
-        resultado?.golsCasa === resultado?.golsFora)
-    ) {
-      if (
-        palpite.golsCasa === resultado?.golsCasa ||
-        palpite.golsFora === resultado?.golsFora
-      ) {
-        pontos = 15;
-      } else {
-        pontos = 10;
-      }
+      return 25;
     }
-    return pontos;
+
+    // Determinar resultado do jogo (vitória casa, empate, vitória fora)
+    const resultadoCasaGanhou = resultado?.golsCasa > resultado?.golsFora;
+    const resultadoEmpate = resultado?.golsCasa === resultado?.golsFora;
+    const resultadoForaGanhou = resultado?.golsCasa < resultado?.golsFora;
+
+    // Determinar palpite do usuário
+    const palpiteCasaGanhou = palpite.golsCasa > palpite.golsFora;
+    const palpiteEmpate = palpite.golsCasa === palpite.golsFora;
+    const palpiteForaGanhou = palpite.golsCasa < palpite.golsFora;
+
+    // Verificar se acertou gols de algum time
+    const acertouGolsCasa = palpite.golsCasa === resultado?.golsCasa;
+    const acertouGolsFora = palpite.golsFora === resultado?.golsFora;
+    const acertouAlgumGol = acertouGolsCasa || acertouGolsFora;
+
+    // Acertou qual time ganhou (vitória de qualquer time)
+    const acertouResultado =
+      (resultadoCasaGanhou && palpiteCasaGanhou) ||
+      (resultadoEmpate && palpiteEmpate) ||
+      (resultadoForaGanhou && palpiteForaGanhou);
+
+    if (acertouResultado) {
+      // Acertou resultado + acertou gols de um dos times
+      if (acertouAlgumGol) {
+        return 20;
+      }
+      // Acertou resultado mas não acertou gols de nenhum time
+      return 15;
+    }
+
+    // Empate não exato (palpitou empate mas errou os gols)
+    if (palpiteEmpate && resultadoEmpate) {
+      return 5;
+    }
+
+    // Determinar se Flamengo joga em casa ou fora
+    const flamengoEmCasa = timeCasa === "Flamengo";
+
+    // Gols do Flamengo no resultado
+    const golsFlamengoResultado = flamengoEmCasa
+      ? resultado?.golsCasa
+      : resultado?.golsFora;
+    const golsAdversarioResultado = flamengoEmCasa
+      ? resultado?.golsFora
+      : resultado?.golsCasa;
+
+    // Empate ou derrota do Flamengo mas acertou gols de algum time
+    const resultadoEmpateOuDerrotaFlamengo =
+      resultadoEmpate || golsFlamengoResultado < golsAdversarioResultado;
+
+    if (resultadoEmpateOuDerrotaFlamengo && acertouAlgumGol) {
+      return 5;
+    }
+
+    // Demais casos
+    return 0;
   };
 
   useEffect(() => {
@@ -98,10 +145,15 @@ const HomePalpite: React.FC<HomeProps> = ({ jogos, usuarios, onPalpite }) => {
             let pontos = 0;
             if (resultado) {
               setJogoRealizado(true);
-              pontos = calcularPontuacao(resultado, palpite);
+              pontos = calcularPontuacao(
+                resultado,
+                palpite,
+                selectedTimeCasa,
+                selectedTimeFora,
+              );
             }
             return { ...palpite, pontos };
-          })
+          }),
         );
         setSelectedPalpite(palpitesComPontos);
       }
@@ -147,7 +199,7 @@ const HomePalpite: React.FC<HomeProps> = ({ jogos, usuarios, onPalpite }) => {
 
     const responseJogo = await atualizarJogo(
       selectedJogo.toString(),
-      dadosJogoPut
+      dadosJogoPut,
     );
 
     if (

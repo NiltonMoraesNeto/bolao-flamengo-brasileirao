@@ -24,7 +24,7 @@ export default function Home() {
       <h1 className="text-3xl font-bold mb-6 text-red-500 text-center">
         Bolão do Flamengo no Brasileirão
       </h1>
-      <Card title="Jogos do Flamengo - 2025">
+      <Card title="Jogos do Flamengo - 2026">
         <span>
           Legenda:
           <div className="flex justify-start">

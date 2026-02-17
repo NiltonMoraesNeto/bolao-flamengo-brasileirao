@@ -1,46 +1,98 @@
-import { Palpite, Resultado } from "../model/classificacao";
+import { Palpite, Resultado, Jogo } from "../model/classificacao";
 
 interface TabelaClassificacaoProps {
   palpites: { [usuario: string]: { [jogoId: number]: Palpite } };
   resultados: Resultado[];
   usuarios: string[];
+  jogos: Jogo[];
 }
 
 export function TabelaClassificacao({
   palpites,
   resultados,
   usuarios,
+  jogos,
 }: TabelaClassificacaoProps) {
   const calcularPontuacao = (
     resultados: Resultado[],
-    palpites: { [jogoId: number]: Palpite }
+    palpites: { [jogoId: number]: Palpite },
+    jogos: Jogo[],
   ) => {
     let pontos = 0;
     let acertosExatos = 0;
 
     resultados.forEach((resultado) => {
       const palpite = palpites[resultado.id];
-      if (palpite) {
+      const jogo = jogos.find((j) => j.id === resultado.id);
+
+      if (palpite && jogo) {
         const { golsCasa, golsFora } = palpite;
+
+        // Placar exato
         if (
           golsCasa === resultado.golsCasa &&
           golsFora === resultado.golsFora
         ) {
           pontos += 25;
           acertosExatos += 1;
-        } else if (
-          (golsCasa > golsFora && resultado.golsCasa > resultado.golsFora) ||
-          (golsCasa < golsFora && resultado.golsCasa < resultado.golsFora) ||
-          (golsCasa === golsFora && resultado.golsCasa === resultado.golsFora)
-        ) {
-          if (
-            golsCasa === resultado.golsCasa ||
-            golsFora === resultado.golsFora
-          ) {
-            pontos += 15;
+          return;
+        }
+
+        // Determinar resultado do jogo (vitória casa, empate, vitória fora)
+        const resultadoCasaGanhou = resultado.golsCasa > resultado.golsFora;
+        const resultadoEmpate = resultado.golsCasa === resultado.golsFora;
+        const resultadoForaGanhou = resultado.golsCasa < resultado.golsFora;
+
+        // Determinar palpite do usuário
+        const palpiteCasaGanhou = golsCasa > golsFora;
+        const palpiteEmpate = golsCasa === golsFora;
+        const palpiteForaGanhou = golsCasa < golsFora;
+
+        // Verificar se acertou gols de algum time
+        const acertouGolsCasa = golsCasa === resultado.golsCasa;
+        const acertouGolsFora = golsFora === resultado.golsFora;
+        const acertouAlgumGol = acertouGolsCasa || acertouGolsFora;
+
+        // Acertou qual time ganhou (vitória de qualquer time)
+        const acertouResultado =
+          (resultadoCasaGanhou && palpiteCasaGanhou) ||
+          (resultadoEmpate && palpiteEmpate) ||
+          (resultadoForaGanhou && palpiteForaGanhou);
+
+        if (acertouResultado) {
+          // Acertou resultado + acertou gols de um dos times
+          if (acertouAlgumGol) {
+            pontos += 20;
           } else {
-            pontos += 10;
+            // Acertou resultado mas não acertou gols de nenhum time
+            pontos += 15;
           }
+          return;
+        }
+
+        // Empate não exato (palpitou empate mas errou os gols)
+        if (palpiteEmpate && resultadoEmpate) {
+          pontos += 5;
+          return;
+        }
+
+        // Determinar se Flamengo joga em casa ou fora
+        const flamengoEmCasa = jogo.timeCasa === "Flamengo";
+
+        // Gols do Flamengo no resultado
+        const golsFlamengoResultado = flamengoEmCasa
+          ? resultado.golsCasa
+          : resultado.golsFora;
+        const golsAdversarioResultado = flamengoEmCasa
+          ? resultado.golsFora
+          : resultado.golsCasa;
+
+        // Empate ou derrota do Flamengo mas acertou gols de algum time
+        const resultadoEmpateOuDerrotaFlamengo =
+          resultadoEmpate || golsFlamengoResultado < golsAdversarioResultado;
+
+        if (resultadoEmpateOuDerrotaFlamengo && acertouAlgumGol) {
+          pontos += 5;
         }
       }
     });
@@ -51,7 +103,8 @@ export function TabelaClassificacao({
   const classificacao = usuarios.map((usuario) => {
     const { pontos, acertosExatos } = calcularPontuacao(
       resultados,
-      palpites[usuario] || {}
+      palpites[usuario] || {},
+      jogos,
     );
     return { usuario, pontos, acertosExatos };
   });
