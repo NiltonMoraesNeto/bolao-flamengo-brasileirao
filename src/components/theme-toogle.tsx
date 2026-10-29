@@ -4,13 +4,8 @@ import { Button } from "./ui/button";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
-
-  return (
-    <Button
-      onClick={toggleTheme}
-      className="p-2 rounded focus:outline-none bg-red-500 hover:bg-red-400 text-black hover:text-gray-300"
-    >
-      {theme === "dark" ? <Sun /> : <Moon />}
-    </Button>
-  );
+  const label = theme === "dark" ? "Ativar tema claro" : "Ativar tema escuro";
+  return <Button type="button" variant="ghost" size="icon" onClick={toggleTheme} aria-label={label} title={label}>
+    {theme === "dark" ? <Sun aria-hidden="true" className="h-5 w-5" /> : <Moon aria-hidden="true" className="h-5 w-5" />}
+  </Button>;
 }

@@ -1,45 +1,19 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Card from "../../components/card";
 import { TabelaJogos } from "../../components/tabela-jogos";
-import { Jogo } from "../../model/jogos";
-import { Check, SquareSlash, X } from "lucide-react";
-import { fetchJogos } from "../../services/jogos-services";
+import { gamesQuery, predictionErrorMessage } from "../../services/prediction-grid";
+import { Button } from "../../components/ui/button";
 
 export default function Home() {
-  const [jogos, setJogos] = useState<Jogo[]>();
-
-  useEffect(() => {
-    const loadJogos = async () => {
-      const responseJogos = await fetchJogos();
-      if (responseJogos) {
-        setJogos(responseJogos);
-      }
-    };
-
-    loadJogos();
-  }, []);
+  const query = useQuery(gamesQuery);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6 text-red-500 text-center">
-        Bolão do Flamengo no Brasileirão
-      </h1>
-      <Card title="Jogos do Flamengo - 2026">
-        <span>
-          Legenda:
-          <div className="flex justify-start">
-            <span className="flex text-green-600 mr-3">
-              <Check /> Vitória
-            </span>
-            <span className="flex text-red-600 mr-3">
-              <X /> Derrota
-            </span>
-            <span className="flex text-yellow-500">
-              <SquareSlash /> Empate
-            </span>
-          </div>
-        </span>
-        <TabelaJogos jogos={jogos} />
+    <div className="mx-auto w-full max-w-5xl px-3 py-6 sm:px-6 sm:py-8">
+      <header className="mb-6"><p className="mb-1 text-xs font-semibold uppercase tracking-widest text-primary">Brasileirão 2026</p><h1 className="text-3xl font-bold tracking-tight">Jogos da temporada</h1><p className="mt-2 text-sm text-muted-foreground">Agenda e resultados do Flamengo.</p></header>
+      <Card title="">
+        {query.isPending ? <p role="status" className="py-6">Carregando jogos…</p>
+          : query.isError ? <div role="alert" className="space-y-3 py-6"><p>{predictionErrorMessage(query.error, "load")}</p><Button variant="outline" onClick={() => void query.refetch()}>Tentar novamente</Button></div>
+          : <TabelaJogos jogos={query.data} />}
       </Card>
     </div>
   );

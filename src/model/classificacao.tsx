@@ -1,5 +1,5 @@
 export interface Jogo {
-  id: number;
+  id: string;
   rodada: number;
   data: string;
   timeCasa: string;
@@ -14,7 +14,7 @@ export interface Palpite {
 }
 
 export interface Resultado {
-  id: number;
+  id: string;
   golsCasa: number;
   golsFora: number;
 }

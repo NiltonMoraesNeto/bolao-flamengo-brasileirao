@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+.local
+src/services/db.json
+src/services/db copy.json
+tests
+supabase
+docs
+.github

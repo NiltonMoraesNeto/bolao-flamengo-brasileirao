@@ -1,7 +1,7 @@
 export interface PalpitesTabela {
   id: string;
   usuario: string;
-  jogoId: number;
+  jogoId: string;
   golsCasa: number;
   golsFora: number;
   pontos: number;

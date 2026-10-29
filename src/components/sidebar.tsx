@@ -1,102 +1,32 @@
-import { ArrowLeft, Home, Menu, Trophy, Volleyball } from "lucide-react";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Separator } from "./ui/separator";
+import { Home, Trophy, Volleyball } from "lucide-react";
+import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/auth-context";
 
-const Sidebar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
+const items = [
+  { path: "/home", label: "Jogos", icon: Home },
+  { path: "/palpites", label: "Palpites", icon: Volleyball },
+  { path: "/classificacao", label: "Classificação", icon: Trophy },
+];
+
+export default function Sidebar() {
   const { dataUser } = useAuth();
-
-  function getGreeting() {
-    const now = new Date();
-    const hours = now.getHours();
-
-    if (hours < 12) {
-      return "Bom Dia";
-    } else if (hours < 18) {
-      return "Boa Tarde";
-    } else {
-      return "Boa Noite";
-    }
-  }
-
-  return (
-    <div className="flex h-auto">
-      <div className="fixed top-13 left-0 p-4 min-md:hidden text-red-500">
-        <button className="focus:outline-none" onClick={toggleSidebar}>
-          {isOpen ? <ArrowLeft size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-      <div
-        className={`
-      fixed inset-y-0 left-0 transform text-red-500
-      ${isOpen ? "translate-x-0" : "-translate-x-full sm:w-16 sm:translate-x-0"}
-      ransition-transform duration-300 ease-in-out bg-black text-red-500 w-64 p-4 h-full md:relative md:translate-x-0 md:transform-none
-    `}
-      >
-        <button className="focus:outline-none" onClick={toggleSidebar}>
-          {isOpen ? <ArrowLeft size={24} /> : <Menu size={24} />}
-        </button>
-        <h2
-          className={`text-2xl mb-6 transition-opacity duration-300 ${
-            isOpen ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <div className="">{getGreeting()}</div>
-          <div className="">{dataUser?.nome}</div>
-        </h2>
-        <nav>
-          <ul>
-            <Separator orientation="horizontal" className="mb-4 bg-red-500" />
-            <li className="mb-4">
-              <Link to="/home" className="text-lg hover:text-gray-300">
-                {isOpen ? (
-                  <div className="flex items-center">
-                    <Home /> <span className="ml-2">Home</span>
-                  </div>
-                ) : (
-                  <Home />
-                )}
-              </Link>
-            </li>
-            <Separator orientation="horizontal" className="mb-4 bg-red-500" />
-            <li className="mb-4">
-              <Link to="/palpites" className="text-lg hover:text-gray-300">
-                {isOpen ? (
-                  <div className="flex items-center mt-4">
-                    <Volleyball /> <span className="ml-2">Palpites</span>
-                  </div>
-                ) : (
-                  <div className="flex items-center mt-4">
-                    <Volleyball />
-                  </div>
-                )}
-              </Link>
-            </li>
-            <Separator orientation="horizontal" className="mb-4 bg-red-500" />
-            <li className="mb-4">
-              <Link to="/classificacao" className="text-lg hover:text-gray-300">
-                {isOpen ? (
-                  <div className="flex items-center mt-4">
-                    <Trophy /> <span className="ml-2">Classificação</span>
-                  </div>
-                ) : (
-                  <div className="flex items-center mt-4">
-                    <Trophy />
-                  </div>
-                )}
-              </Link>
-            </li>
-            <Separator orientation="horizontal" className="mb-4 bg-red-500" />
-          </ul>
+  return <>
+    <aside className="hidden w-56 shrink-0 border-r bg-card lg:block">
+      <div className="sticky top-24 space-y-6 p-4">
+        <div className="border-b pb-5"><p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Organizador</p><p className="mt-2 truncate text-sm font-medium" title={dataUser?.nome}>{dataUser?.nome}</p></div>
+        <nav aria-label="Navegação principal" className="space-y-2">
+          {items.map(({ path, label, icon: Icon }) => <NavLink key={path} to={path}
+            className={({ isActive }) => `flex min-h-11 items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium outline-none focus-visible:ring-2 focus-visible:ring-ring ${isActive ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted hover:text-foreground"}`}>
+            <Icon aria-hidden="true" className="h-5 w-5" />{label}
+          </NavLink>)}
         </nav>
       </div>
-    </div>
-  );
-};
-
-export default Sidebar;
+    </aside>
+    <nav aria-label="Navegação no celular" className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-3 border-t bg-card pb-[env(safe-area-inset-bottom)] shadow-sm lg:hidden">
+      {items.map(({ path, label, icon: Icon }) => <NavLink key={path} to={path}
+        className={({ isActive }) => `flex min-h-16 flex-col items-center justify-center gap-1 border-t-2 px-1 py-2 text-xs font-medium outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring ${isActive ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:bg-muted"}`}>
+        <Icon aria-hidden="true" className="h-5 w-5" />{label}
+      </NavLink>)}
+    </nav>
+  </>;
+}
