@@ -1,5 +1,5 @@
 export interface Resultado {
-  id: number;
+  id: string;
   golsCasa: number;
   golsFora: number;
 }

@@ -1,17 +1,8 @@
-import React from 'react';
+import type { ReactNode } from "react";
 
-interface CardProps {
-  title: string;
-  children: React.ReactNode;
+export default function Card({ title, children }: { title: string; children: ReactNode }) {
+  return <section className="mx-auto max-w-full rounded-xl border bg-card p-3 text-card-foreground shadow-sm sm:p-6">
+    {title && <h2 className="mb-5 text-lg font-semibold tracking-tight sm:text-xl">{title}</h2>}
+    {children}
+  </section>;
 }
-
-const Card: React.FC<CardProps> = ({ title, children }) => {
-  return (
-    <div className="max-w-full md:max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">{title}</h2>
-      {children}
-    </div>
-  );
-};
-
-export default Card;

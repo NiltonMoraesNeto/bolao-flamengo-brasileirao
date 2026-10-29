@@ -1,5 +1,5 @@
 export interface Jogo {
-  id: number;
+  id: string;
   rodada: number;
   data: string;
   timeCasa: string;
@@ -9,7 +9,7 @@ export interface Jogo {
 }
 
 export interface listaJogos {
-  id: number;
+  id: string;
   rodada: number;
   data: string;
   timeCasa: string;

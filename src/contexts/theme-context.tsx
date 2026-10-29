@@ -1,35 +1,14 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import type { ReactNode } from "react";
+import { ThemeProvider as NextThemeProvider, useTheme as useNextTheme } from "next-themes";
 
-interface ThemeContextProps {
-  theme: string;
-  toggleTheme: () => void;
-}
-
-const ThemeContext = createContext<ThemeContextProps>({
-  theme: "light",
-  toggleTheme: () => {},
-});
-
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState("light");
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove(theme === "dark" ? "light" : "dark");
-    root.classList.add(theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
-  };
-
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  return <NextThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="bolao-theme" disableTransitionOnChange>{children}</NextThemeProvider>;
 }
 
 export function useTheme() {
-  return useContext(ThemeContext);
+  const { resolvedTheme, setTheme } = useNextTheme();
+  return {
+    theme: resolvedTheme ?? "light",
+    toggleTheme: () => setTheme(resolvedTheme === "dark" ? "light" : "dark"),
+  };
 }

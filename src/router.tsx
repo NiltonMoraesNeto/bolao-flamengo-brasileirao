@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import { LoginPage } from "./components/login-page";
 import { ProtectedRoute } from "./components/protected-route";
 import { AuthenticatedLayout } from "./components/authenticated-layout";
@@ -6,7 +7,7 @@ import { useAuth } from "./contexts/auth-context";
 import { NotFoundPage } from "./pages/NotFound/not-found";
 import Home from "./pages/Home/home";
 import Classificacao from "./pages/Classificacao/classificacao";
-import Palpites from "./pages/Palpites/palpites";
+const Palpites = lazy(() => import("./pages/Palpites/palpites"));
 
 export function AppRoutes() {
   const { isAuthenticated } = useAuth();
@@ -26,7 +27,7 @@ export function AppRoutes() {
         <Route element={<AuthenticatedLayout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/classificacao" element={<Classificacao />} />
-          <Route path="/palpites" element={<Palpites />} />
+          <Route path="/palpites" element={<Suspense fallback={<p role="status" className="p-6">Carregando palpites…</p>}><Palpites /></Suspense>} />
 
           {/* Rota para página não encontrada */}
           <Route path="*" element={<NotFoundPage />} />

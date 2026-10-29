@@ -1,24 +1,32 @@
-# React + TypeScript + Vite
+# Bolão do Flamengo
 
-Projeto feito em [React](https://react.dev/) com [Vite](https://vite.dev/), [TypeScript](https://www.typescriptlang.org/), estilização com [TailwindCSS](https://tailwindcss.com/) e [shadcn/ui](https://ui.shadcn.com/) e o backEnd com [Node Express](https://expressjs.com/)
+Gestão do bolão de amigos com um único administrador. React, TypeScript, Tailwind e shadcn/ui, com TanStack Form/Zod e TanStack Query; API Node 24/Express/TypeScript; PostgreSQL e Auth no Supabase.
 
-## Getting Started
+A aplicação está publicada em [bolao-flamengo-brasileirao.vercel.app](https://bolao-flamengo-brasileirao.vercel.app), com frontend e API Node na Vercel e banco/Auth no Supabase. O organizador confirmou o login na publicação; os 38 jogos e a classificação dos 12 participantes de 2026 foram conferidos online. Rotas, proteção da API e integração de login também foram verificadas com credencial fictícia. Para configurar outro ambiente, consulte [o guia Supabase](docs/SUPABASE.md).
 
-```bash
-npm i
-npm start
-npm run dev
-```
-
-Abrir [http://localhost:5173/login](http://localhost:5173/login) para a tela de login
-
-
+## Desenvolvimento
 
 ```bash
-Projeto contem as seguintes páginas(URL)
-- /home - (Listagem dos jogos do Flamengo no Brasilerão 2026)
-- /palpites - (Form para inserir os palpites de cada jogo e abaixo uma listagem dos palpites 
-de cada jogo e por jogador)
-- /classificacao - (Classificação do Bolão)
+nvm use
+npm ci
+cp .env.example .env
 ```
 
+Configure `.env`. Execute `npm start` e `npm run dev` em terminais separados e abra [o login](http://localhost:5173/login). A conta agora vem do Supabase Auth; credenciais antigas do JSON não são importadas.
+
+## Verificação e importação
+
+- `npm run check`: lint, tipos da API, testes e build.
+- `npm run db:prepare-import`: valida os JSONs e gera `.local/import-legacy.sql`, sem alterar os originais ou escrever na nuvem.
+
+Testes usam PostgreSQL embarcado (PGlite) e gateway Auth simulado. Os testes HTTP abrem uma porta temporária no localhost. Não precisam de Supabase ou dados reais.
+
+## Documentação
+
+- [Diagnóstico e prioridades](docs/REVIEW.md)
+- [Especificação e etapas](docs/SPEC.md)
+- [Harness e validação](docs/HARNESS.md)
+- [Configuração e migração Supabase](docs/SUPABASE.md)
+- [Publicação do frontend e API na Vercel](docs/VERCEL.md)
+
+Grade em lote com conferência, correções com justificativa, navegação móvel, temas claro/escuro e publicação na Vercel estão implementados. Leitura de prints e renovação automática de sessão ficam para as próximas etapas. As mudanças desta sessão foram publicadas pela CLI e ainda precisam de commit/push para atualizar o repositório.
