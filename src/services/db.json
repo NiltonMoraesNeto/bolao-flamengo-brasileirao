@@ -349,11 +349,11 @@
     {
       "id": "32",
       "rodada": 32,
-      "data": "2026-10-25 18:00",
+      "data": "2026-10-26 20:00",
       "timeCasa": "Flamengo",
       "timeFora": "Atlético-MG",
-      "resultado": "",
-      "placar": ""
+      "resultado": "V",
+      "placar": "3x2"
     },
     {
       "id": "33",
@@ -3014,6 +3014,90 @@
       "jogoId": 31,
       "golsCasa": 1,
       "golsFora": 2
+    },
+    {
+      "id": "1j2vvav8x",
+      "usuario": "ANDRÉ",
+      "jogoId": 32,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "moyyxj0uy",
+      "usuario": "ALEX LEITE",
+      "jogoId": 32,
+      "golsCasa": 3,
+      "golsFora": 0
+    },
+    {
+      "id": "de1w7ypfj",
+      "usuario": "ALEX VEZZARO",
+      "jogoId": 32,
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "azzzzcyee",
+      "usuario": "BRUNO ESPOSEL",
+      "jogoId": 32,
+      "golsCasa": 3,
+      "golsFora": 1
+    },
+    {
+      "id": "gjs2ch74e",
+      "usuario": "BRUNO VEZZARO",
+      "jogoId": 32,
+      "golsCasa": 1,
+      "golsFora": 0
+    },
+    {
+      "id": "s8bdyv8ub",
+      "usuario": "GABRIEL",
+      "jogoId": 32,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "7bmkgi008",
+      "usuario": "GUILHERME",
+      "jogoId": 32,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "s3ftp26il",
+      "usuario": "NILTON",
+      "jogoId": 32,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "owy7r0a5f",
+      "usuario": "OCTÁVIO",
+      "jogoId": 32,
+      "golsCasa": 2,
+      "golsFora": 1
+    },
+    {
+      "id": "8ga9n2n59",
+      "usuario": "RAFAEL",
+      "jogoId": 32,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "v5cbrdxzb",
+      "usuario": "RENATO",
+      "jogoId": 32,
+      "golsCasa": 2,
+      "golsFora": 0
+    },
+    {
+      "id": "tqw1sghji",
+      "usuario": "RODRIGO",
+      "jogoId": 32,
+      "golsCasa": 3,
+      "golsFora": 0
     }
   ],
   "resultados": [
@@ -3171,6 +3255,11 @@
       "id": "31",
       "golsCasa": 0,
       "golsFora": 3
+    },
+    {
+      "id": "32",
+      "golsCasa": 3,
+      "golsFora": 2
     }
   ]
 }
