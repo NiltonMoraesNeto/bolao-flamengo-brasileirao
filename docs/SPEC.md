@@ -67,6 +67,8 @@ Fluxo spec-driven: requisito → critérios/casos → implementação → harnes
 ## Grade de palpites — entrega de 29/10/2026
 
 - Uma linha por participante e seleção de jogo com rodada, mando e horário.
+- Ajuste de 30/10/2026: palpites salvos mostram o placar como texto, no desktop e no celular. Inputs aparecem somente para participantes sem palpite; excluir restaura os campos e salvar novamente volta ao texto. Correções pela grade seguem o fluxo de excluir e reinserir, preservando confirmações e justificativa após o início.
+- Colunas dos times com 144 px no desktop e 176 px a partir de 1280 px, com quebra de linha legível para nomes longos.
 - Campos vazios significam ausência de palpite; 0×0 só existe quando ambos os zeros são preenchidos. Nunca preencher novos palpites automaticamente.
 - Carregar valores salvos e enviar somente novos palpites ou placares alterados. Linha parcialmente preenchida, gols fracionários, negativos ou acima de 99 impedem a conferência.
 - Conferência mostra participante, placar anterior e novo, com nomes dos times e contagem de inclusões/alterações. Nenhuma gravação antes do botão de confirmação.

@@ -37,6 +37,10 @@ Em 29/10/2026, o organizador criou o projeto Supabase, aplicou a migration e a i
 
 Essa verificação não alterou registros remotos. Permanecem pendentes os testes de escrita no projeto real, leitura remota de 2025, acesso com outra conta, expiração de sessão, aparelho físico, backup/restauração e deploy.
 
+## Ajuste da grade em 30/10/2026
+
+Validação local com API fictícia em memória, sem acesso ao Supabase: dois participantes salvos renderizam placares em texto e um sem palpite mantém os dois inputs. Exclusão confirmada com justificativa devolve os campos vazios; reinserção via conferência/salvamento elimina novamente os inputs do participante. Pontuação e exclusão permanecem visíveis. Larguras 320, 390, 1024 e 1280 px sem overflow horizontal; colunas dos times com 144/176 px no desktop, mantendo cards no celular. Temas escuro e claro conferidos. `npm run check`: 38 testes, tipos e build aprovados; somente os três avisos preexistentes de Fast Refresh. Capturas fictícias em `.local/screenshots/grade-ajustada-desktop.jpg` e `.local/screenshots/grade-ajustada-mobile.jpg`.
+
 ## Prints, futuramente
 
 Conjunto autorizado/anonimizado com saídas revisadas: apelidos, nomes parecidos, mando invertido, cortes, texto irrelevante e gols ilegíveis. Medir precisão por campo e correções necessárias. Nunca salvar linhas incertas sem revisão e confirmação. Avaliação de visão separada dos testes determinísticos.
