@@ -3,7 +3,8 @@ import { useForm, useStore } from "@tanstack/react-form";
 import { useQuery } from "@tanstack/react-query";
 import { Check, ClipboardCheck, Loader2, RotateCcw, Trash2 } from "lucide-react";
 import { toast } from "sonner";
-import { createPredictionDraft, isValidCorrectionReason, preparePredictionBatch } from "../domain/prediction-batch";
+import { createPredictionDraft, preparePredictionBatch } from "../domain/prediction-batch";
+import { isFutureGame } from "../domain/game-eligibility";
 import type { PredictionChange, StoredPrediction } from "../domain/prediction-batch";
 import { predictionDraftFormSchema, SubmissionError } from "../domain/form-schemas";
 import { calculateScore } from "../domain/scoring";
@@ -44,6 +45,7 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
     defaultValues: defaults,
     validators: { onChange: predictionDraftFormSchema, onSubmit: predictionDraftFormSchema },
     onSubmit: ({ value }) => {
+      if (!isFutureGame(game, result ? [result] : [], Date.now())) { setNow(Date.now()); toast.error("Os palpites deste jogo estão bloqueados."); return; }
       const batch = preparePredictionBatch(value.rows, game.id);
       if (batch.changes.length && !Object.keys(batch.errors).length) {
         setReview(batch.changes);
@@ -54,13 +56,14 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
   const draft = useStore(form.store, state => state.values.rows);
   const batch = preparePredictionBatch(draft, game.id);
   const invalid = Object.keys(batch.errors).length > 0;
-  const dirty = invalid || batch.changes.length > 0;
+  const locked = !isFutureGame(game, result ? [result] : [], now);
+  const dirty = !locked && (invalid || batch.changes.length > 0);
   const started = Date.parse(game.data) <= now;
 
   useEffect(() => { onDirtyChange(dirty); }, [dirty, onDirtyChange]);
   useEffect(() => { onBusyChange(saving); }, [saving, onBusyChange]);
   useEffect(() => {
-    const timer = setInterval(() => setNow(Date.now()), 10000);
+    const timer = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(timer);
   }, []);
   useEffect(() => {
@@ -70,13 +73,9 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
     return () => window.removeEventListener("beforeunload", warn);
   }, [dirty]);
 
-  const assertReason = (reason: string) => {
-    const afterKickoff = Date.parse(game.data) <= Date.now();
+  const assertOpen = () => {
     setNow(Date.now());
-    if (afterKickoff && !isValidCorrectionReason(reason)) {
-      throw new SubmissionError("O jogo já começou. Informe uma justificativa com pelo menos 8 caracteres.");
-    }
-    return afterKickoff ? reason : undefined;
+    if (!isFutureGame(game, result ? [result] : [], Date.now())) throw new SubmissionError("Os palpites deste jogo estão bloqueados. Somente jogos futuros podem ser alterados.");
   };
 
   const resetDraft = (rows: StoredPrediction[]) => {
@@ -85,18 +84,20 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
     form.reset(next);
   };
 
-  const save = async (reason: string) => {
+  const save = async () => {
     if (!review || saving) return;
-    const saved = await saveMutation.mutateAsync({ changes: review, reason: assertReason(reason) });
+    assertOpen();
+    const saved = await saveMutation.mutateAsync({ changes: review });
     const changedNames = new Set(saved.map(row => row.usuario));
     resetDraft([...predictions.filter(row => !changedNames.has(row.usuario)), ...saved]);
     setReview(null);
     toast.success(`${saved.length} ${saved.length === 1 ? "palpite salvo" : "palpites salvos"}`);
   };
 
-  const remove = async (reason: string) => {
+  const remove = async () => {
     if (!deleteTarget || saving) return;
-    await deleteMutation.mutateAsync({ id: deleteTarget.id, reason: assertReason(reason) });
+    assertOpen();
+    await deleteMutation.mutateAsync({ id: deleteTarget.id });
     resetDraft(predictions.filter(row => row.id !== deleteTarget.id));
     setDeleteTarget(null);
     toast.success("Palpite excluído");
@@ -106,13 +107,14 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
     <section className="space-y-5" aria-label="Grade de palpites">
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-muted/40 p-3">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-          <p className="text-sm font-medium">{result ? `Resultado final: ${result.golsCasa} × ${result.golsFora}` : started ? "Jogo iniciado · lançamento com justificativa" : "Aberto para palpites"}</p>
+          <p className="text-sm font-medium">{result ? `Resultado final: ${result.golsCasa} × ${result.golsFora} · somente consulta` : started ? "Jogo iniciado · palpites bloqueados" : "Aberto para palpites"}</p>
           <p className="text-xs text-muted-foreground">{predictions.length} de {participants.length} palpites salvos.</p>
         </div>
-        {started && <Button variant="outline" disabled={dirty || saving}
+        {started && !result && <Button variant="outline" disabled={dirty || saving}
           title={dirty ? "Salve ou descarte os palpites antes de alterar o resultado" : undefined}
-          onClick={() => setResultOpen(true)}>{result ? "Corrigir resultado" : "Registrar resultado"}</Button>}
+          onClick={() => setResultOpen(true)}>Registrar resultado</Button>}
       </div>
+      <p id="grid-help" className="text-xs text-muted-foreground">{locked ? "Palpites bloqueados para alterações. Os dados deste jogo estão disponíveis apenas para consulta." : "Para alterar um palpite salvo, exclua-o e preencha novamente antes do início do jogo."}</p>
       <form noValidate onSubmit={event => { event.preventDefault(); event.stopPropagation(); void form.handleSubmit(); }}>
       <div className="overflow-x-auto rounded-lg border">
         <table className="w-full text-sm lg:table-fixed" aria-describedby="grid-help">
@@ -128,8 +130,8 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
           </thead>
           <tbody className="block space-y-3 bg-background p-2 lg:table-row-group lg:space-y-0 lg:divide-y lg:bg-transparent lg:p-0">
             {draft.map((row, rowIndex) => {
-              const error = batch.errors[row.participantId];
-              const changed = batch.changes.some(change => change.usuario === row.usuario);
+              const error = locked ? undefined : batch.errors[row.participantId];
+              const changed = !locked && batch.changes.some(change => change.usuario === row.usuario);
               const state = error ? "Revisar" : changed ? row.original ? "Alterado" : "Novo" : row.original ? "Salvo" : "Sem palpite";
               const points = row.original && result ? calculateScore(result, row.original, game.timeCasa).pontos : null;
               return (
@@ -141,9 +143,9 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
                   </th>
                   {(["golsCasa", "golsFora"] as const).map((field, index) => (
                     <td key={field} className="block lg:table-cell lg:p-2">
-                      {row.original ? <>
+                      {row.original || locked ? <>
                         <span className="mb-1 block text-xs text-muted-foreground lg:sr-only">{index === 0 ? `${game.timeCasa} (casa)` : `${game.timeFora} (fora)`}</span>
-                        <span className="flex min-h-11 items-center justify-center text-base font-medium tabular-nums">{row.original[field]}</span>
+                        <span className="flex min-h-11 items-center justify-center text-base font-medium tabular-nums">{row.original?.[field] ?? "—"}</span>
                       </> : <>
                         <label htmlFor={`prediction-${row.participantId}-${field}`} className="mb-1 block text-xs text-muted-foreground lg:sr-only">{index === 0 ? `${game.timeCasa} (casa)` : `${game.timeFora} (fora)`}</label>
                         <form.Field name={`rows[${rowIndex}].${field}`}>{control => <Input id={`prediction-${row.participantId}-${field}`} type="text" inputMode="numeric" autoComplete="off" pattern="[0-9]{1,2}" maxLength={3}
@@ -156,7 +158,7 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
                   ))}
                   <td className="hidden p-3 lg:table-cell"><span className={changed ? "font-medium text-amber-800 dark:text-amber-300" : "text-muted-foreground"}>{state}</span></td>
                   {result && <td className="col-span-2 flex items-center justify-between border-t pt-2 text-center tabular-nums lg:table-cell lg:border-0 lg:p-2" title={changed ? "Pontuação do palpite salvo; será atualizada após confirmar" : undefined}><span className="text-xs text-muted-foreground lg:hidden">Pontos do palpite salvo</span><span>{points ?? "—"}</span>{changed && points !== null && <span className="sr-only">, referente ao palpite salvo</span>}</td>}
-                  <td className="absolute right-2 top-2 lg:static lg:table-cell lg:p-2">{row.original && <Button type="button" size="icon" variant="ghost" className="h-11 w-11 text-muted-foreground hover:text-red-600 dark:hover:text-red-400"
+                  <td className="absolute right-2 top-2 lg:static lg:table-cell lg:p-2">{row.original && !locked && <Button type="button" size="icon" variant="ghost" className="h-11 w-11 text-muted-foreground hover:text-red-600 dark:hover:text-red-400"
                     aria-label={`Excluir palpite de ${row.usuario}`} disabled={dirty || saving}
                     title={dirty ? "Salve ou descarte as alterações antes de excluir" : "Excluir palpite"}
                     onClick={() => { setDeleteTarget(row.original ?? null); setNow(Date.now()); }}><Trash2 className="h-4 w-4" /></Button>}</td>
@@ -167,7 +169,7 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
         </table>
       </div>
       {result && dirty && <p className="text-xs text-muted-foreground">Os pontos exibidos correspondem aos palpites já salvos. Serão recalculados após a confirmação.</p>}
-      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t pt-4">
+      {!locked && <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t pt-4">
         <p role="status" className="text-sm text-muted-foreground">
           {invalid ? "Revise os campos indicados antes de continuar." : batch.changes.length ? `${batch.changes.length} ${batch.changes.length === 1 ? "palpite para conferir" : "palpites para conferir"}` : <span className="flex items-center gap-2"><Check className="h-4 w-4" />Nenhuma alteração pendente.</span>}
         </p>
@@ -177,12 +179,12 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
             <ClipboardCheck className="h-4 w-4" />Conferir palpites
           </Button>
         </div>
-      </div>
+      </div>}
 
       </form>
-      {review && <PredictionConfirmDialog title="Conferir palpites"
+      {review && !locked && <PredictionConfirmDialog title="Conferir palpites"
         description={`Rodada ${game.rodada} · ${game.timeCasa} (casa) × ${game.timeFora} (fora). Apenas os palpites abaixo serão salvos.`}
-        requiresReason={started} confirmLabel={`Confirmar e salvar ${review.length}`} cancelLabel="Voltar à edição" onConfirm={save} onClose={() => setReview(null)}>
+        requiresReason={false} confirmLabel={`Confirmar e salvar ${review.length}`} cancelLabel="Voltar à edição" onConfirm={save} onClose={() => setReview(null)}>
         <div className="rounded-md bg-muted p-3 text-sm">{review.filter(row => !row.original).length} {review.filter(row => !row.original).length === 1 ? "novo" : "novos"} · {review.filter(row => row.original).length} {review.filter(row => row.original).length === 1 ? "alterado" : "alterados"}</div>
         <div className="overflow-x-auto"><table className="w-full text-sm"><caption className="sr-only">Conferência de alterações</caption>
           <thead><tr className="border-b text-left text-muted-foreground"><th className="py-2 font-medium">Participante</th><th className="p-2 font-medium">Anterior</th><th className="p-2 font-medium">Novo</th></tr></thead>
@@ -195,11 +197,11 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
         <DialogFooter className="gap-2"><Button variant="outline" onClick={() => setDiscardOpen(false)}>Continuar editando</Button><Button variant="destructive" onClick={() => { resetDraft(predictions); setDiscardOpen(false); }}>Descartar alterações</Button></DialogFooter>
       </DialogContent></Dialog>
 
-      {deleteTarget && <PredictionConfirmDialog title="Excluir palpite?"
+      {deleteTarget && !locked && <PredictionConfirmDialog title="Excluir palpite?"
         description={`${deleteTarget.usuario}: ${deleteTarget.golsCasa} × ${deleteTarget.golsFora} em ${game.timeCasa} × ${game.timeFora}. A exclusão será registrada no histórico.`}
-        requiresReason={started} confirmLabel="Confirmar exclusão" onConfirm={remove} onClose={() => setDeleteTarget(null)} />}
+        requiresReason={false} confirmLabel="Confirmar exclusão" onConfirm={remove} onClose={() => setDeleteTarget(null)} />}
 
-      {resultOpen && <GameResultDialog game={game} result={result} onBusyChange={onBusyChange} onClose={() => setResultOpen(false)} />}
+      {resultOpen && !result && <GameResultDialog game={game} result={result} onBusyChange={onBusyChange} onClose={() => setResultOpen(false)} />}
 
     </section>
   );

@@ -29,4 +29,6 @@ Testes usam PostgreSQL embarcado (PGlite) e gateway Auth simulado. Os testes HTT
 - [Configuração e migração Supabase](docs/SUPABASE.md)
 - [Publicação do frontend e API na Vercel](docs/VERCEL.md)
 
-Grade em lote com conferência, correções com justificativa, navegação móvel, temas claro/escuro e publicação na Vercel estão implementados. Leitura de prints e renovação automática de sessão ficam para as próximas etapas. As mudanças desta sessão foram publicadas pela CLI e ainda precisam de commit/push para atualizar o repositório.
+Grade em lote com conferência, consulta dos jogos encerrados, navegação móvel, temas claro/escuro e publicação na Vercel estão implementados. Leitura de prints e renovação automática de sessão ficam para as próximas etapas. Novas publicações seguem o fluxo de commit/push e PR para `main`, conectado à Vercel.
+
+A página **Simulação** (`/simulacao`) permite escolher um jogo futuro, carregar/alterar/adicionar palpites temporários e informar um resultado hipotético para abrir a classificação em um Dialog. Tudo é calculado no navegador; palpites, resultados e classificação oficiais permanecem intactos. A entrega local de 30/10/2026 está na branch `codex/simulacao-classificacao`, aguardando commit/push e PR para publicação. O bloqueio oficial dos jogos requer aplicar a migration `202610300003_lock_finished_games.sql` no Supabase.
