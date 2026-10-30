@@ -115,15 +115,15 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
       </div>
       <form noValidate onSubmit={event => { event.preventDefault(); event.stopPropagation(); void form.handleSubmit(); }}>
       <div className="overflow-x-auto rounded-lg border">
-        <table className="w-full text-sm" aria-describedby="grid-help">
+        <table className="w-full text-sm lg:table-fixed" aria-describedby="grid-help">
           <caption className="sr-only">Palpites de {game.timeCasa} contra {game.timeFora}, rodada {game.rodada}</caption>
           <thead className="hidden bg-muted/70 text-left text-muted-foreground lg:table-header-group">
             <tr><th className="p-3 font-medium">Participante</th>
-              <th className="w-20 p-2 text-center font-medium"><span className="block text-xs">CASA</span>{game.timeCasa}</th>
-              <th className="w-20 p-2 text-center font-medium"><span className="block text-xs">FORA</span>{game.timeFora}</th>
-              <th className="hidden p-3 font-medium lg:table-cell">Situação</th>
-              {result && <th className="p-2 text-center font-medium">Pts</th>}
-              <th className="w-10 p-2"><span className="sr-only">Ações</span></th>
+              <th className="w-36 p-3 text-center font-medium xl:w-44"><span className="mb-1 block text-xs">CASA</span><span className="block text-balance leading-snug">{game.timeCasa}</span></th>
+              <th className="w-36 p-3 text-center font-medium xl:w-44"><span className="mb-1 block text-xs">FORA</span><span className="block text-balance leading-snug">{game.timeFora}</span></th>
+              <th className="hidden w-28 p-3 font-medium lg:table-cell">Situação</th>
+              {result && <th className="w-16 p-2 text-center font-medium">Pts</th>}
+              <th className="w-16 p-2"><span className="sr-only">Ações</span></th>
             </tr>
           </thead>
           <tbody className="block space-y-3 bg-background p-2 lg:table-row-group lg:space-y-0 lg:divide-y lg:bg-transparent lg:p-0">
@@ -134,19 +134,24 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
               const points = row.original && result ? calculateScore(result, row.original, game.timeCasa).pontos : null;
               return (
                 <tr key={row.participantId} className={`relative grid grid-cols-2 gap-x-3 gap-y-3 rounded-lg border p-3 lg:table-row lg:rounded-none lg:border-0 lg:p-0 ${changed ? "bg-amber-50/60 dark:bg-amber-950/20" : "bg-card hover:bg-muted/30"}`}>
-                  <th scope="row" className="col-span-2 block pr-12 text-left font-medium lg:table-cell lg:p-3">
+                  <th scope="row" className="col-span-2 block break-words pr-12 text-left font-medium lg:table-cell lg:p-3">
                     {row.usuario}
                     <span className="mt-1 block text-xs font-normal text-muted-foreground lg:hidden">{state}</span>
                     {error && <span id={`error-${row.participantId}`} role="alert" className="mt-1 block text-xs font-normal text-red-600 dark:text-red-400">{error}</span>}
                   </th>
                   {(["golsCasa", "golsFora"] as const).map((field, index) => (
                     <td key={field} className="block lg:table-cell lg:p-2">
-                      <label htmlFor={`prediction-${row.participantId}-${field}`} className="mb-1 block text-xs text-muted-foreground lg:sr-only">{index === 0 ? `${game.timeCasa} (casa)` : `${game.timeFora} (fora)`}</label>
-                      <form.Field name={`rows[${rowIndex}].${field}`}>{control => <Input id={`prediction-${row.participantId}-${field}`} type="text" inputMode="numeric" autoComplete="off" pattern="[0-9]{1,2}" maxLength={3}
+                      {row.original ? <>
+                        <span className="mb-1 block text-xs text-muted-foreground lg:sr-only">{index === 0 ? `${game.timeCasa} (casa)` : `${game.timeFora} (fora)`}</span>
+                        <span className="flex min-h-11 items-center justify-center text-base font-medium tabular-nums">{row.original[field]}</span>
+                      </> : <>
+                        <label htmlFor={`prediction-${row.participantId}-${field}`} className="mb-1 block text-xs text-muted-foreground lg:sr-only">{index === 0 ? `${game.timeCasa} (casa)` : `${game.timeFora} (fora)`}</label>
+                        <form.Field name={`rows[${rowIndex}].${field}`}>{control => <Input id={`prediction-${row.participantId}-${field}`} type="text" inputMode="numeric" autoComplete="off" pattern="[0-9]{1,2}" maxLength={3}
                         aria-label={`${row.usuario}: gols do ${index === 0 ? game.timeCasa : game.timeFora}`}
                         aria-invalid={Boolean(error)} aria-describedby={error ? `error-${row.participantId}` : undefined}
                         value={control.state.value} onChange={event => control.handleChange(event.target.value)} onBlur={control.handleBlur}
                         disabled={saving} className="mx-auto w-full bg-background text-center tabular-nums lg:w-16" />}</form.Field>
+                      </>}
                     </td>
                   ))}
                   <td className="hidden p-3 lg:table-cell"><span className={changed ? "font-medium text-amber-800 dark:text-amber-300" : "text-muted-foreground"}>{state}</span></td>
