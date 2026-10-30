@@ -40,9 +40,29 @@ export function correctionFormSchema(required: boolean) {
   return z.object({ reason: required ? correctionReasonSchema : z.string().max(500) });
 }
 
+const scoreInput = z.string().regex(/^\d{1,2}$/, "Use gols inteiros de 0 a 99.");
+export const simulationFormSchema = z.object({ home: scoreInput, away: scoreInput });
+
+export const simulationPredictionRowSchema = z.object({
+  participantId: z.string(), usuario: z.string(), golsCasa: z.string(), golsFora: z.string(),
+}).superRefine((row, context) => {
+  const home = row.golsCasa.trim();
+  const away = row.golsFora.trim();
+  if (!home && !away) return;
+  const message = !home || !away ? "Preencha os dois gols ou deixe ambos vazios."
+    : !/^\d{1,2}$/.test(home) || !/^\d{1,2}$/.test(away) ? "Use gols inteiros de 0 a 99." : null;
+  if (message) {
+    context.addIssue({ code: "custom", path: ["golsCasa"], message });
+    context.addIssue({ code: "custom", path: ["golsFora"], message });
+  }
+});
+export const simulationScenarioSchema = simulationFormSchema.extend({
+  rows: z.array(simulationPredictionRowSchema).min(1).max(200),
+});
+export type SimulationDraftRow = z.infer<typeof simulationPredictionRowSchema>;
+
 export function resultFormSchema(isCorrection: boolean) {
-  const score = z.string().regex(/^\d{1,2}$/, "Use gols inteiros de 0 a 99.");
-  return z.object({ home: score, away: score, reason: isCorrection ? correctionReasonSchema : z.string() });
+  return z.object({ home: scoreInput, away: scoreInput, reason: isCorrection ? correctionReasonSchema : z.string() });
 }
 
 export type StoredPrediction = z.infer<typeof storedPredictionSchema>;

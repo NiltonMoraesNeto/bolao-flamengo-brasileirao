@@ -1,4 +1,5 @@
-import { calculateScore } from "../domain/scoring";
+import { calculateStandings } from "../domain/standings";
+import type { Standing } from "../domain/standings";
 import { Palpite, Resultado, Jogo } from "../model/classificacao";
 
 interface TabelaClassificacaoProps {
@@ -14,47 +15,19 @@ export function TabelaClassificacao({
   usuarios,
   jogos,
 }: TabelaClassificacaoProps) {
-  const calcularPontuacao = (
-    resultados: Resultado[],
-    palpites: { [jogoId: string]: Palpite },
-    jogos: Jogo[],
-  ) => {
-    let pontos = 0;
-    let acertosExatos = 0;
+  const predictions = Object.entries(palpites).flatMap(([usuario, entries]) =>
+    Object.entries(entries).map(([jogoId, score]) => ({ ...score, usuario, jogoId })));
+  const classificacao = calculateStandings(usuarios, jogos, predictions, resultados);
+  return <ClassificationTable standings={classificacao} />;
+}
 
-    resultados.forEach((resultado) => {
-      const palpite = palpites[resultado.id];
-      const jogo = jogos.find((j) => j.id === resultado.id);
-
-      if (palpite && jogo) {
-        const pontuacao = calculateScore(resultado, palpite, jogo.timeCasa);
-        pontos += pontuacao.pontos;
-        if (pontuacao.acertoExato) acertosExatos += 1;
-      }
-    });
-
-    return { pontos, acertosExatos };
-  };
-
-  const classificacao = usuarios.map((usuario) => {
-    const { pontos, acertosExatos } = calcularPontuacao(
-      resultados,
-      palpites[usuario] || {},
-      jogos,
-    );
-    return { usuario, pontos, acertosExatos };
-  });
-
-  classificacao.sort((a, b) => {
-    if (b.pontos === a.pontos) {
-      return b.acertosExatos - a.acertosExatos;
-    }
-    return b.pontos - a.pontos;
-  });
+export function ClassificationTable({ standings, caption = "Classificação por pontos e número de placares exatos" }: {
+  standings: Standing[]; caption?: string;
+}) {
 
   return (
     <div className="overflow-x-auto rounded-lg border">
-      <table className="w-full bg-card text-sm"><caption className="sr-only">Classificação por pontos e número de placares exatos</caption>
+      <table className="w-full bg-card text-sm"><caption className="sr-only">{caption}</caption>
         <thead className="bg-muted text-left text-xs text-muted-foreground sm:text-sm">
           <tr><th scope="col" className="px-2 py-3 font-medium sm:px-4"><span className="sm:hidden">Pos.</span><span className="hidden sm:inline">Posição</span></th>
             <th scope="col" className="px-2 py-3 font-medium sm:px-4">Participante</th>
@@ -62,7 +35,7 @@ export function TabelaClassificacao({
             <th scope="col" className="px-2 py-3 text-right font-medium sm:px-4" aria-label="Placares exatos"><span className="sm:hidden">Exatos</span><span className="hidden sm:inline">Placares exatos</span></th>
           </tr>
         </thead>
-        <tbody className="divide-y">{classificacao.map((user, index) => <tr key={user.usuario} className="hover:bg-muted/40">
+        <tbody className="divide-y">{standings.map((user, index) => <tr key={user.usuario} className="hover:bg-muted/40">
           <td className="px-2 py-4 text-muted-foreground tabular-nums sm:px-4">{index + 1}º</td>
           <th scope="row" className="px-2 py-4 text-left text-xs font-medium sm:px-4 sm:text-sm">{user.usuario}</th>
           <td className={`px-2 py-4 text-right font-semibold tabular-nums sm:px-4 ${index === 0 ? "text-primary" : ""}`}>{user.pontos}</td>

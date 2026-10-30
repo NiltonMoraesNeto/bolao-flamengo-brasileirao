@@ -13,6 +13,7 @@ Para o deploy, `vercel build` gera o artefato oficial e `npm run check:vercel` i
 - form-schemas.test.mjs: schemas Zod e integração real com FormApi/FieldApi do TanStack para bloquear submit inválido.
 - query-client.test.mjs: reutilização/invalidação de leitura, chaves por jogo, limpeza de cache e ausência de retry em mutações/acesso recusado.
 - api.test.mjs: HTTP com gateway Supabase simulado; autenticação, autorização, indisponibilidade, validação, rate limit e encaminhamento do lote.
+- simulation.test.mjs: filtro de jogos futuros, fronteira do horário e resultado final, recusa de jogo bloqueado, alteração/inclusão/retirada de palpites locais, jogo sem palpites originais, desempates, restauração da origem, entradas congeladas sem mutação e TanStack Form/Zod com 0×0 explícito.
 - deployment.test.mjs: configuração sem vazar valores, IP confiável somente na Vercel, falha fechada do limitador e migration de rate limit no PostgreSQL com contagem entre instâncias, isolamento por IP, expiração e negação de leitura/reset anônimos.
 
 Auth users/uid são simulados para o SQL local. Gateway simulado testa Node sem rede externa. Isso não substitui validar Auth, PostgREST e permissões no projeto real.
@@ -40,6 +41,14 @@ Essa verificação não alterou registros remotos. Permanecem pendentes os teste
 ## Ajuste da grade em 30/10/2026
 
 Validação local com API fictícia em memória, sem acesso ao Supabase: dois participantes salvos renderizam placares em texto e um sem palpite mantém os dois inputs. Exclusão confirmada com justificativa devolve os campos vazios; reinserção via conferência/salvamento elimina novamente os inputs do participante. Pontuação e exclusão permanecem visíveis. Larguras 320, 390, 1024 e 1280 px sem overflow horizontal; colunas dos times com 144/176 px no desktop, mantendo cards no celular. Temas escuro e claro conferidos. `npm run check`: 38 testes, tipos e build aprovados; somente os três avisos preexistentes de Fast Refresh. Capturas fictícias em `.local/screenshots/grade-ajustada-desktop.jpg` e `.local/screenshots/grade-ajustada-mobile.jpg`.
+
+## Simulação em 30/10/2026
+
+Regra revisada pelo organizador: somente jogos futuros; palpites do cenário podem ser editados sem persistência. Suíte aprovada com 46 testes, tipos e build. PostgreSQL testou upgrade da base existente sem alterar o histórico, recusa de salvar/excluir palpites após início mesmo com justificativa, resultado final definitivo, bloqueio por resultado apesar de data futura, lote com rollback e manutenção da autorização/RLS.
+
+No navegador com API fictícia e 12 participantes: seletor de simulação ofereceu apenas rodadas 34/35 futuras; rodadas 1/33 finalizadas ficaram indisponíveis. Na rodada 34, alterar ANA e adicionar CARLOS ao cenário 1×0 gerou ANA 70/2, BRUNO 55/0 e CARLOS 25/1. Restaurar recuperou ANA 2×0 e CARLOS vazio. Rodada 35 sem palpites originais aceitou um 0×0 temporário para CARLOS e exibiu 25 pontos, mantendo ANA 45/1 e BRUNO 40/0 oficiais. A página normal de jogo finalizado ficou sem inputs, exclusões ou correção de resultado. Instrumentação registrou zero tentativas de gravação pela simulação.
+
+Telas de 320 e 390 px verificadas com Dialog rolável e sem overflow horizontal. Desktop e temas claro/escuro fazem parte da conferência visual. Capturas em `.local/screenshots/simulacao-mobile.jpg` e `.local/screenshots/simulacao-desktop.jpg`. Nenhum dado do Supabase foi acessado ou alterado nesta validação.
 
 ## Prints, futuramente
 

@@ -145,7 +145,7 @@ export function createApp(gateway: SupabaseGateway, options: {
     } else if (error instanceof UpstreamError) {
       const conflict = ["23505", "23503", "P0001"].includes(error.code ?? "");
       const status = conflict ? 409 : error.status === 403 ? 403 : error.status === 401 ? 401 : 503;
-      res.status(status).json({ error: conflict ? "Operação recusada: confira referências, prazo e justificativa de correção." : "Serviço indisponível ou acesso recusado", requestId: res.locals.requestId });
+      res.status(status).json({ error: conflict ? "Operação recusada: confira os dados e o prazo. Palpites ficam bloqueados ao iniciar o jogo e resultados finais são definitivos." : "Serviço indisponível ou acesso recusado", requestId: res.locals.requestId });
     } else if (error instanceof SyntaxError) {
       res.status(400).json({ error: "JSON inválido" });
     } else if (error && typeof error === "object" && "type" in error && error.type === "entity.too.large") {

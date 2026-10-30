@@ -8,6 +8,7 @@ import { NotFoundPage } from "./pages/NotFound/not-found";
 import Home from "./pages/Home/home";
 import Classificacao from "./pages/Classificacao/classificacao";
 const Palpites = lazy(() => import("./pages/Palpites/palpites"));
+const Simulacao = lazy(() => import("./pages/Simulacao/simulacao"));
 
 export function AppRoutes() {
   const { isAuthenticated } = useAuth();
@@ -28,6 +29,7 @@ export function AppRoutes() {
           <Route path="/home" element={<Home />} />
           <Route path="/classificacao" element={<Classificacao />} />
           <Route path="/palpites" element={<Suspense fallback={<p role="status" className="p-6">Carregando palpites…</p>}><Palpites /></Suspense>} />
+          <Route path="/simulacao" element={<Suspense fallback={<p role="status" className="p-6">Carregando simulação…</p>}><Simulacao /></Suspense>} />
 
           {/* Rota para página não encontrada */}
           <Route path="*" element={<NotFoundPage />} />

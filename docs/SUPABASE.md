@@ -49,12 +49,14 @@ Login: POST /api/usuarios/login com email/password do Supabase Auth. Retorna tok
 
 Leituras compatíveis: /api/jogos/list, /api/jogosById?id=..., /api/usuarios/list, /api/palpites/list, /api/palpitesById?jogoId=..., /api/palpitesByIdAndUser?jogoId=...&usuario=..., /api/resultados/list e /api/resultadosById?id=....
 
-- POST /api/palpites/new: upsert de usuario/jogoId/golsCasa/golsFora antes do início.
+- POST /api/palpites/new: upsert de usuario/jogoId/golsCasa/golsFora apenas antes do início e sem resultado final.
 - POST /api/palpites/batch: rows e correctionReason opcional; até 200 linhas, transação única.
-- DELETE /api/palpitesDelete/:id: após início, corpo com correctionReason.
-- POST /api/resultados/new: id/golsCasa/golsFora e correctionReason opcional; cadastro após início; correção de resultado exige justificativa.
+- DELETE /api/palpitesDelete/:id: somente antes do início e sem resultado final.
+- POST /api/resultados/new: id/golsCasa/golsFora; primeiro cadastro após início; resultado final não admite correção.
 
-Entrada tardia de palpite usa batch com justificativa. A grade já permite conferência e justificativa para correções, e o resultado tem um diálogo próprio de correção. PUTs antigos foram removidos; o frontend já usa os fluxos novos. Resultado não precisa mais atualizar o jogo em outra requisição.
+Regra revisada em 30/10/2026: jogos iniciados não admitem inclusão, alteração ou exclusão de palpites oficiais, mesmo com justificativa. Após o primeiro resultado, a partida fica apenas para consulta. Aplique `supabase/migrations/202610300003_lock_finished_games.sql` uma vez no projeto existente; não reaplique a estrutura inicial nem a importação. A migration não altera registros existentes, apenas atualiza as RPCs e mantém a auditoria e permissões. Em uma instalação nova, aplique as três migrations em ordem. PUTs antigos continuam removidos.
+
+A simulação usa somente leituras destas APIs. Seus palpites editáveis e resultado hipotético ficam em memória no navegador, limitados a jogos futuros sem resultado, sem enviar operações de gravação ao Supabase.
 
 ## Publicação e limites
 
