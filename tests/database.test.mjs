@@ -109,6 +109,20 @@ test("PostgreSQL: RLS, lote, temporadas e upgrade para bloqueio de jogos", async
     await db.query("select public.save_result(2026, '4', 0, 0, null)");
     await assert.rejects(db.query("select public.save_result(2026, '4', 1, 0, 'Correção não permitida após resultado final')"));
     await assert.rejects(db.query("update public.results set gols_casa=9 where game_id='4'"));
+
+    await db.exec("reset role");
+    await db.exec(readFileSync(new URL("../supabase/migrations/202611050004_allow_late_prediction_entries.sql", import.meta.url), "utf8"));
+    await asUser(admin);
+    const lateRows = [{ ...rows[0], jogoId: "2" }, { ...rows[0], jogoId: "4" }];
+    const auditBeforeLate = await count("audit_events");
+    await save(lateRows);
+    assert.equal(await count("audit_events"), auditBeforeLate + 2);
+    await save(lateRows);
+    assert.equal(await count("audit_events"), auditBeforeLate + 2, "repetir o envio não duplica auditoria");
+    await assert.rejects(save([{ ...lateRows[0], golsCasa: 9 }]), /Predictions are closed/);
+    const latePick = (await db.query("select id from public.predictions where season_id=2026 and game_id='2'")).rows[0];
+    await assert.rejects(db.query("select public.delete_prediction(2026, $1, null)", [latePick.id]), /Predictions are closed/);
+    await assert.rejects(db.query("select public.save_result(2026, '2', 9, 9, null)"), /Final result is immutable/);
     await asUser(other);
     await assert.rejects(save(rows));
     await asUser("", "anon");

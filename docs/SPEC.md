@@ -19,7 +19,7 @@ Padrão solicitado pelo organizador: formulários com TanStack Form e schemas Zo
 | DATA-01 | IDs iguais em temporadas diferentes não cruzam dados | Implementado e testado |
 | DATA-02 | Importar 840 palpites, 76 jogos, 70 resultados e 24 inscrições sem credenciais | Importação confirmada pelo organizador; jogos e classificação de 2026 conferidos no navegador |
 | PRED-01 | Unique por temporada/jogo/participante; gols inteiros de 0 a 99 | Implementado e testado |
-| PRED-02 | Palpites oficiais só podem ser incluídos/alterados/excluídos antes do início e sem resultado final | Interface bloqueada; migration de bloqueio preparada e testada |
+| PRED-02 | Palpites faltantes podem ser cadastrados mesmo após o jogo. Edição e exclusão de palpites salvos só antes do início e sem resultado final | Tela e RPC com a mesma regra |
 | PRED-03 | Lote até 200 linhas; erro reverte tudo e auditoria; duplicatas internas recusadas | Grade e conferência implementadas, com TanStack Form/Zod e mutação Query |
 | RES-01 | Primeiro resultado após início; resultado final único e definitivo | Interface implementada; migration testada impede correção mesmo com justificativa |
 | SIM-01 | Simular somente jogos futuros, com palpites editáveis locais e classificação em Dialog | Implementado em 30/10/2026; nenhuma gravação ou mutação do cache oficial |
@@ -68,7 +68,7 @@ Fluxo spec-driven: requisito → critérios/casos → implementação → harnes
 ## Grade de palpites — entrega de 29/10/2026
 
 - Uma linha por participante e seleção de jogo com rodada, mando e horário.
-- Ajuste de 30/10/2026: palpites oficiais salvos mostram o placar como texto, no desktop e no celular. Em jogos futuros, inputs aparecem para participantes sem palpite; excluir restaura os campos e salvar novamente volta ao texto. Após o início ou resultado final, todos os palpites ficam apenas para consulta.
+- Ajuste de 30/10/2026: palpites oficiais salvos mostram o placar como texto, no desktop e no celular. Campos aparecem para participantes sem palpite, inclusive após o jogo. Antes do início, excluir restaura os campos e salvar novamente volta ao texto.
 - Colunas dos times com 144 px no desktop e 176 px a partir de 1280 px, com quebra de linha legível para nomes longos.
 - Campos vazios significam ausência de palpite; 0×0 só existe quando ambos os zeros são preenchidos. Nunca preencher novos palpites automaticamente.
 - Carregar valores salvos e enviar somente novos palpites ou placares alterados. Linha parcialmente preenchida, gols fracionários, negativos ou acima de 99 impedem a conferência.
