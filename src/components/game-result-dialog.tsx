@@ -40,7 +40,7 @@ export function GameResultDialog({ game, result, onBusyChange, onClose }: {
     <Dialog open onOpenChange={open => { if (!open && !busy) onClose(); }}>
       <DialogContent onInteractOutside={event => { if (busy) event.preventDefault(); }} onEscapeKeyDown={event => { if (busy) event.preventDefault(); }}>
         <DialogHeader><DialogTitle>Registrar resultado</DialogTitle>
-          <DialogDescription>Rodada {game.rodada} · {game.timeCasa} × {game.timeFora}. Após confirmar o placar final, o jogo ficará bloqueado para alterações.</DialogDescription>
+          <DialogDescription>Rodada {game.rodada} · {game.timeCasa} × {game.timeFora}. Após a confirmação, o placar final será definitivo.</DialogDescription>
         </DialogHeader>
         <form noValidate onSubmit={event => { event.preventDefault(); event.stopPropagation(); void form.handleSubmit(); }} className="space-y-5">
           <div className="grid grid-cols-2 gap-4">

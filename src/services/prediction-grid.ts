@@ -87,7 +87,7 @@ export function predictionErrorMessage(error: unknown, operation: "load" | "save
     const status = error.response?.status;
     if (status === 401) return "Sua sessão expirou. Entre novamente.";
     if (status === 403) return "Sua conta não tem permissão para esta operação.";
-    if (status === 409) return "O banco recusou a operação. Palpites só podem ser alterados antes do início do jogo, e resultados finais não podem ser corrigidos. Confira também os dados enviados.";
+    if (status === 409) return "O banco recusou a operação. Após o início, só é possível registrar palpites faltantes. Resultados finais são definitivos. Confira também os dados enviados.";
     if (!error.response || status === 503) return operation === "load"
       ? "Não foi possível carregar os dados. Confira a conexão e tente novamente."
       : "Não foi possível confirmar a operação. Confira a conexão e tente novamente. Seus campos foram mantidos.";
