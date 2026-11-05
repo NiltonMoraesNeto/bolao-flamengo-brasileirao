@@ -112,7 +112,6 @@ function PredictionEditor({ game, participants, data, onDirtyChange, onBusyChang
           title={dirty ? "Salve ou descarte os palpites antes de alterar o resultado" : undefined}
           onClick={() => setResultOpen(true)}>Registrar resultado</Button>}
       </div>
-      <p id="grid-help" className="text-xs text-muted-foreground">{deletionLocked ? "Você pode registrar palpites que ainda faltam. Palpites já salvos ficam disponíveis para consulta." : "Para alterar um palpite salvo, exclua-o e preencha novamente antes do início do jogo."}</p>
       <form noValidate onSubmit={event => { event.preventDefault(); event.stopPropagation(); void form.handleSubmit(); }}>
       <div className="overflow-x-auto rounded-lg border">
         <table className="w-full text-sm lg:table-fixed" aria-describedby="grid-help">
